@@ -1,34 +1,50 @@
 design2-transceiver
 ===================
 
-RF transceiver project for UF ECE Design II
+BlackChat Wireless Communication Client
 By Russell Crowe & Patrick Lloyd
 
 ###Premise:
-There are still many areas without modern GSM or internet infrastructure but where communication is still vital. Existing technology is either prohibitively expensive or too inconvenient to implement. The goal of this project is to create an ad-hoc GSM network that can transmit SMS messages from any GSM phone through a long range AM transceiver. It can be used as a point-to-point darknet or as a free public use communication terminal through the use of OpenBTS's VoIP infrastructure. 
+In many situations it is necessary to sent text communication and transfer files discretely between two computers. With the recent exposure of warrantless government wiretapping protecting one's privacy more difficult than ever. The purpose of BlackChat is to create a secure, discrete, and plausibly deniable point-to-point communication system for text (and maybe files?) between two or more computers. Ideally this will be entered in the TI Innovation Challenge for the 2014 year.
 
 ###TODO:
 1) Primary research
-  * Legality of Ham radio broadcasting
-  * Meet with Hams & radio engineers like Zmuda & Taylor about concept
-  * OpenBTS implemetation feasibility on different hardware platforms
-  * Look into encoding GSM / Ham-band data (protocols)
-  * What hardware currently exists for doing something similar
+  * Frequencies on which to operate
+    * Low power / low frequencies most desirable but may require excessively large antennae
+    * 900 MHz / 2.4 GHz ISM bands worth looking into
+  * Legality of transferring encrypted messages over those bands
+  * Can we use TI's monolithic RF solutions or would we need to design our own?
  
 2) High level system design
-  * What primary hardware and software blocks need to be implemented?
-  * Frequencies to design for
-    * Antennas
-	  * ADC/DAC requirements
-  	  * FPGA speed
-  * Cost estimate
-  * RF PCB design considerations
- 
+  * Functional blocks
+    * Text communication first priority
+    * Linux support first priority
+    * Will it support file transfer?
+    * Discovery / networking / group chat?
+    * Audio recording & transmission?
+  * Power requrements
+  * Size constraints
+    * Rev. 1 -- big; make sure device functions as advertised
+    * Subsequent revs -- Focus effort on decreasing size
+  
 3) Hardware design
-  * [Not Applicable]
+  * Stress adequate analog design component
+  * Part selection
+    * Mostly TI components for contest
+    * Alpha rev vs. final rev part sizes
+      * Large, easy to solder parts in prototyping stage
+      * Ideally use same part with smaller package in Final
   
 4) Software design
-  * [Not Applicable]
+  * Firmware side
+    * Packet encryption
+    * USB <--> USART functionality
+    * Transmission protocol (error checking & correction, etc.)
+    * Broadcasting and discovery
+  * Interface side
+    * Linux toolchains for MSP
+    * High focus on Linux compatibility
+    * Terminal (Bash) or C++ (stdout) application with expandability to a GUI, time permitting
 
 5) Implementation and Testing
   * [Not Applicable]
