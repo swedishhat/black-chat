@@ -12,11 +12,11 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg3090"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.48.5 r10040"
    width="628"
    height="837"
    sodipodi:docname="logo_vect.svg"
-   inkscape:export-filename="/home/jimbo/Projects/design2-transceiver/black-chat/doc/logo/logo_vect.png"
+   inkscape:export-filename="C:\Projects\design2-transceiver\black-chat\doc\logo\logo_vect_nobg.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <metadata
@@ -27,7 +27,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,14 +43,14 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1031"
+     inkscape:window-height="1017"
      id="namedview3092"
      showgrid="false"
      inkscape:zoom="1"
-     inkscape:cx="113.2344"
-     inkscape:cy="437.44305"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:cx="290.81512"
+     inkscape:cy="474.91796"
+     inkscape:window-x="-8"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer2" />
   <g
@@ -59,7 +59,7 @@
      inkscape:label="thoughts"
      style="display:inline">
     <rect
-       style="fill:#ffffff;display:inline"
+       style="fill:none;display:inline"
        id="rect4331"
        width="706"
        height="715"
@@ -126,31 +126,32 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="306.0101"
-       y="716.00879"
+       x="310.0101"
+       y="724.00879"
        id="text3344"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3346"
-         x="306.0101"
-         y="716.00879"
-         style="font-size:24px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Umpush;-inkscape-font-specification:Umpush Oblique">c o m p l e t e l y</tspan><tspan
+         x="310.0101"
+         y="724.00879"
+         style="font-size:36px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Segoe UI Light;-inkscape-font-specification:Segoe UI Light">c o m p l e t e l y</tspan><tspan
          sodipodi:role="line"
-         x="306.0101"
-         y="746.00879"
+         x="310.0101"
+         y="769.00879"
          id="tspan3348"
-         style="font-size:24px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Umpush;-inkscape-font-specification:Umpush Oblique">i n v i s i b l e</tspan></text>
+         style="font-size:36px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Segoe UI Light;-inkscape-font-specification:Segoe UI Light">i n v i s i b l e</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:36.94303894px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        id="text3369"
        sodipodi:linespacing="125%"
-       y="103.2308"
+       y="93.230797"
        x="315.65958"><tspan
          sodipodi:role="line"
-         x="315.65958"
-         y="103.2308"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu Mono;-inkscape-font-specification:Ubuntu Mono;font-size:48px"
-         id="tspan4308">Alpaca Security Solutions</tspan></text>
+         x="318.99457"
+         y="93.230797"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:6.67000198000000030px;font-family:Segoe UI Semibold;-inkscape-font-specification:Segoe UI Semibold"
+         id="tspan4308"
+         dx="0 0 0 0 0 0 0 0 0 0 0 0">Alpaca Security Solutions</tspan></text>
   </g>
 </svg>
