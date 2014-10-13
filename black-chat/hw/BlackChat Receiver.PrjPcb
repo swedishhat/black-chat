@@ -29,7 +29,7 @@ PowerPortNamesTakePriority=0
 PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
-OutputPath=
+OutputPath=Project Outputs for BlackChat Receiver
 
 [Document1]
 DocumentPath=BlackChat Library.PcbLib
@@ -95,6 +95,58 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 
+[Document5]
+DocumentPath=BlackChat Receiver.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GKO
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.REP
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.TXT
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
@@ -104,6 +156,9 @@ CurrentRevision=
 Variant=[No Variations]
 GenerateBOM=1
 OutputJobsCount=0
+
+[Generic_EDE]
+OutputDir=Project Outputs for BlackChat Receiver
 
 [OutputGroup1]
 Name=Netlist Outputs
