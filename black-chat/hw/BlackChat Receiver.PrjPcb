@@ -29,7 +29,7 @@ PowerPortNamesTakePriority=0
 PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
-OutputPath=Project Outputs for BlackChat Receiver
+OutputPath=
 
 [Document1]
 DocumentPath=BlackChat Library.PcbLib
@@ -162,7 +162,7 @@ GenerateBOM=1
 OutputJobsCount=0
 
 [Generic_EDE]
-OutputDir=Project Outputs for BlackChat Receiver
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
