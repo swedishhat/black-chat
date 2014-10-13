@@ -29,7 +29,7 @@ PowerPortNamesTakePriority=0
 PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
-OutputPath=
+OutputPath=Project Outputs for BlackChat Transmitter
 
 [Document1]
 DocumentPath=Transmitter - BlackChat.SchDoc
@@ -116,35 +116,71 @@ DocumentPath=Project Outputs for BlackChat Transmitter\NC Drill\[R0] Transmitter
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.EXTREP
+DocumentPath=Gerber\[R0] Transmitter - BlackChat.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.GBL
+DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.GKO
+DocumentPath=Gerber\[R0] Transmitter - BlackChat.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.GTL
+DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for BlackChat Transmitter\NC Drill\[R0] Transmitter - BlackChat.LDP
+DocumentPath=Gerber\[R0] Transmitter - BlackChat.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.REP
+DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.RUL
+DocumentPath=Gerber\[R0] Transmitter - BlackChat.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument9]
+DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for BlackChat Transmitter\NC Drill\[R0] Transmitter - BlackChat.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Gerber\[R0] Transmitter - BlackChat.REP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.REP
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Gerber\[R0] Transmitter - BlackChat.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for BlackChat Transmitter\Gerber\[R0] Transmitter - BlackChat.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument15]
 DocumentPath=Project Outputs for BlackChat Transmitter\NC Drill\[R0] Transmitter - BlackChat.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for BlackChat Transmitter\BOM\Bill of Materials-BlackChat Transmitter.xlsx
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for BlackChat Transmitter\SimpleBOM\BlackChat Transmitter.BOM
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for BlackChat Transmitter\SimpleBOM\BlackChat Transmitter.CSV
 DItemRevisionGUID=
 
 [Configuration1]
@@ -158,7 +194,7 @@ GenerateBOM=1
 OutputJobsCount=0
 
 [Generic_EDE]
-OutputDir=
+OutputDir=Project Outputs for BlackChat Transmitter
 
 [OutputGroup1]
 Name=Netlist Outputs

@@ -147,6 +147,10 @@ DItemRevisionGUID=
 DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.TXT
 DItemRevisionGUID=
 
+[GeneratedDocument10]
+DocumentPath=Project Outputs for BlackChat Receiver\BOM\Bill of Materials-BlackChat Receiver.xlsx
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
