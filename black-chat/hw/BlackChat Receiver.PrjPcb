@@ -29,7 +29,7 @@ PowerPortNamesTakePriority=0
 PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
-OutputPath=
+OutputPath=Project Outputs for BlackChat Receiver
 
 [Document1]
 DocumentPath=BlackChat Library.PcbLib
@@ -116,38 +116,62 @@ DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- Blac
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.EXTREP
+DocumentPath=Gerber\[R0] Receiver- BlackChat.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GBL
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GKO
+DocumentPath=Gerber\[R0] Receiver- BlackChat.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GTL
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.LDP
+DocumentPath=Gerber\[R0] Receiver- BlackChat.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.REP
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.RUL
+DocumentPath=Gerber\[R0] Receiver- BlackChat.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.TXT
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument10]
+DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.REP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.REP
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for BlackChat Receiver\Gerber\[R0] Receiver- BlackChat.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for BlackChat Receiver\NC Drill\[R0] Receiver- BlackChat.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument16]
 DocumentPath=Project Outputs for BlackChat Receiver\BOM\Bill of Materials-BlackChat Receiver.xlsx
 DItemRevisionGUID=
 
@@ -162,7 +186,7 @@ GenerateBOM=1
 OutputJobsCount=0
 
 [Generic_EDE]
-OutputDir=
+OutputDir=Project Outputs for BlackChat Receiver
 
 [OutputGroup1]
 Name=Netlist Outputs

@@ -1,19 +1,19 @@
 Project Outputs Generation Report
 ---------------------------------
-Start Output Generation At 3:06:18 PM On 10/13/2014
+Start Output Generation At 5:10:13 PM On 10/20/2014
 
 Output: Gerber Files
 Type  : Gerber
-From  : Variant [[No Variations]] of PCB Document [[R0] Transmitter - BlackChat.PcbDoc]
-   Generated File[[R0] Transmitter - BlackChat.GTL]
-   Generated File[[R0] Transmitter - BlackChat.GBL]
-   Generated File[[R0] Transmitter - BlackChat.GKO]
-   Generated File[[R0] Transmitter - BlackChat.RUL]
-   Generated File[[R0] Transmitter - BlackChat.EXTREP]
-   Generated File[[R0] Transmitter - BlackChat.REP]
+From  : Variant [[No Variations]] of PCB Document [[R0] Receiver- BlackChat.PcbDoc]
+   Generated File[[R0] Receiver- BlackChat.GTL]
+   Generated File[[R0] Receiver- BlackChat.GBL]
+   Generated File[[R0] Receiver- BlackChat.GKO]
+   Generated File[[R0] Receiver- BlackChat.RUL]
+   Generated File[[R0] Receiver- BlackChat.EXTREP]
+   Generated File[[R0] Receiver- BlackChat.REP]
 
 
 Files Generated   : 6
 Documents Printed : 0
 
-Finished Output Generation At 3:06:19 PM On 10/13/2014
+Finished Output Generation At 5:10:14 PM On 10/20/2014
