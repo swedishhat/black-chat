@@ -29,12 +29,15 @@ PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 OutputPath=
+<<<<<<< HEAD
 LogFolderPath=
 ManagedProjectGUID=
 
 [Preferences]
 PrefsVaultGUID=
 PrefsRevisionGUID=
+=======
+>>>>>>> 4fe674f5df1f8a68f10b0df650cb5f2c9cf0cdbf
 
 [Document1]
 DocumentPath=BlackChat Library.PcbLib
