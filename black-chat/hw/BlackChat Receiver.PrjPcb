@@ -29,21 +29,24 @@ PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 OutputPath=
+<<<<<<< HEAD
 LogFolderPath=
 ManagedProjectGUID=
 
 [Preferences]
 PrefsVaultGUID=
 PrefsRevisionGUID=
+=======
+>>>>>>> 4fe674f5df1f8a68f10b0df650cb5f2c9cf0cdbf
 
 [Document1]
-DocumentPath=Top Level - BlackChat.SchDoc
-AnnotationEnabled=0
+DocumentPath=BlackChat Library.PcbLib
+AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=2
+AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -51,7 +54,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=TQUWEWBV
+DocumentUniqueId=WRJSIWPO
 
 [Document2]
 DocumentPath=BlackChat Library.SchLib
@@ -71,7 +74,41 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document3]
-DocumentPath=BlackChat Library.PcbLib
+DocumentPath=Receiver - BlackChat.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=0
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=IYPETBTD
+
+[Document4]
+DocumentPath=[R0] Receiver- BlackChat.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=OSJRUNJS
+
+[Document5]
+DocumentPath=BlackChat Receiver.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -87,73 +124,29 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document4]
-DocumentPath=Receiver - BlackChat.SchDoc
-AnnotationEnabled=0
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
+[GeneratedDocument1]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.EXTREP
 DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=LOXDXFMC
 
-[Document5]
-DocumentPath=Transmitter - BlackChat.SchDoc
-AnnotationEnabled=0
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=3
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
+[GeneratedDocument2]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.GBL
 DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=JHHUCJCI
 
-[Document6]
-DocumentPath=Power - BlackChat.SchDoc
-AnnotationEnabled=0
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=0
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
+[GeneratedDocument3]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.GKO
 DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=NYWNJUWJ
 
-[Document7]
-DocumentPath=Digital - BlackChat.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=4
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
+[GeneratedDocument4]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.GTL
 DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=XMNTKERX
+
+[GeneratedDocument5]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.REP
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Gerber\[R0] Receiver- BlackChat.RUL
+DItemRevisionGUID=
 
 [Configuration1]
 Name=Default Configuration
@@ -164,6 +157,9 @@ CurrentRevision=
 Variant=[No Variations]
 GenerateBOM=1
 OutputJobsCount=0
+
+[Generic_EDE]
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
