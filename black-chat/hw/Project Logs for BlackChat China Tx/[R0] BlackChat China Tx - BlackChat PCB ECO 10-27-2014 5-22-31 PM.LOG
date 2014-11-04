@@ -1,0 +1,48 @@
+Added Component: Designator=C1(CAP-0805)
+Added Component: Designator=C2(CAP-0805)
+Added Component: Designator=L1(C1210)
+Added Component: Designator=L2(C1210)
+Added Component: Designator=P1(HDR1X3)
+Added Component: Designator=P2(HDR1X2)
+Added Component: Designator=Q1(NE85634_SOT89)
+Added Component: Designator=Q2(SOT95P275X120-3N)
+Added Component: Designator=R1(RES-0805)
+Added Component: Designator=R2(RES-0805)
+Added Component: Designator=X1(RO3101A)
+Added Pin To Net: NetName=AGND Pin=P1-3
+Added Pin To Net: NetName=AGND Pin=P2-2
+Added Pin To Net: NetName=AGND Pin=Q2-1
+Added Pin To Net: NetName=AGND Pin=X1-2
+Added Pin To Net: NetName=AGND Pin=X1-4
+Added Net: Name=AGND
+Added Pin To Net: NetName=AVCC Pin=L1-2
+Added Pin To Net: NetName=AVCC Pin=P1-2
+Added Net: Name=AVCC
+Added Pin To Net: NetName=DATA Pin=P1-1
+Added Pin To Net: NetName=DATA Pin=R2-1
+Added Net: Name=DATA
+Added Pin To Net: NetName=NetC1_1 Pin=C1-1
+Added Pin To Net: NetName=NetC1_1 Pin=C2-2
+Added Pin To Net: NetName=NetC1_1 Pin=L1-1
+Added Pin To Net: NetName=NetC1_1 Pin=L2-1
+Added Pin To Net: NetName=NetC1_1 Pin=L2-2
+Added Pin To Net: NetName=NetC1_1 Pin=Q1-3
+Added Pin To Net: NetName=NetC1_1 Pin=R1-1
+Added Pin To Net: NetName=NetC1_1 Pin=X1-3
+Added Net: Name=NetC1_1
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=NetC1_2 Pin=P2-1
+Added Net: Name=NetC1_2
+Added Pin To Net: NetName=NetC2_1 Pin=C2-1
+Added Pin To Net: NetName=NetC2_1 Pin=Q1-2
+Added Pin To Net: NetName=NetC2_1 Pin=Q2-3
+Added Net: Name=NetC2_1
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-1
+Added Pin To Net: NetName=NetQ1_1 Pin=R1-2
+Added Pin To Net: NetName=NetQ1_1 Pin=X1-1
+Added Net: Name=NetQ1_1
+Added Pin To Net: NetName=NetQ2_2 Pin=Q2-2
+Added Pin To Net: NetName=NetQ2_2 Pin=R2-2
+Added Net: Name=NetQ2_2
+Added Class: Name=BlackChat China Tx
+Added Room: Name=BlackChat China Tx

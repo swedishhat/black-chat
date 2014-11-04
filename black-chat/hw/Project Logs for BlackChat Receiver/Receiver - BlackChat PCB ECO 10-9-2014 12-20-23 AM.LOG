@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetC20_2 Pin=U2-2
+Removed Pin From Net: NetName=NetC15_2 Pin=U2-3
+Removed Pin From Net: NetName=GND Pin=U2-4
+Removed Pin From Net: NetName=NetR12_1 Pin=U2-5
+Removed Pin From Net: NetName=NetC18_1 Pin=U2-6
+Removed Pin From Net: NetName=5V0 Pin=U2-8
+Change Component DesignItemId : Designator=U2 Old DesignItemId=CMP-0015-00142-1 New DesignItemId=CMP-0017-00353-1
+Change Component Footprint: Designator=U2 Old Footprint=TI-P8 New Footprint=TI-D8_L
+Change Component Comment : Designator=U2 Old Comment=TLC27M2BCPE4 New Comment=TLC27M2BCD
