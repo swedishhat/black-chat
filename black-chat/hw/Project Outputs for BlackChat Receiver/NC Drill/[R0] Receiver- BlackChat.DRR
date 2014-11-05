@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: [R0] Receiver- BlackChat.PcbDoc   10/20/2014  5:10:14 PM
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : [R0] Receiver- BlackChat.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        15mil (0.381mm)          Round          72               11.31 Inch (287.34 mm)
+T2        35.43mil (0.89992mm)     Round          4                1.94 Inch (49.34 mm)
+---------------------------------------------------------------------------
+Totals                                            76               13.26 Inch (336.68 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

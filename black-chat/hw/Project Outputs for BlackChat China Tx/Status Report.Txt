@@ -1,0 +1,15 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of PCB Document [[R0] BlackChat China Tx - BlackChat.PcbDoc]
+   Generated File[[R0] BlackChat China Tx - BlackChat.GTL]
+   Generated File[[R0] BlackChat China Tx - BlackChat.GBL]
+   Generated File[[R0] BlackChat China Tx - BlackChat.GKO]
+   Generated File[[R0] BlackChat China Tx - BlackChat.RUL]
+   Generated File[[R0] BlackChat China Tx - BlackChat.EXTREP]
+   Generated File[[R0] BlackChat China Tx - BlackChat.REP]
+
+
+Files Generated   : 6
+Documents Printed : 0
+
+Finished Output Generation At 6:23:37 PM On 10/27/2014

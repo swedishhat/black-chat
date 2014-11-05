@@ -1,19 +1,12 @@
-Project Outputs Generation Report
----------------------------------
-Start Output Generation At 5:10:13 PM On 10/20/2014
-
-Output: Gerber Files
-Type  : Gerber
-From  : Variant [[No Variations]] of PCB Document [[R0] Receiver- BlackChat.PcbDoc]
-   Generated File[[R0] Receiver- BlackChat.GTL]
-   Generated File[[R0] Receiver- BlackChat.GBL]
-   Generated File[[R0] Receiver- BlackChat.GKO]
-   Generated File[[R0] Receiver- BlackChat.RUL]
-   Generated File[[R0] Receiver- BlackChat.EXTREP]
-   Generated File[[R0] Receiver- BlackChat.REP]
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [[R0] Digital - BlackChat.PcbDoc]
+   Generated File[[R0] Digital - BlackChat.TXT]
+   Generated File[[R0] Digital - BlackChat.LDP]
+   Generated File[[R0] Digital - BlackChat.DRR]
 
 
-Files Generated   : 6
+Files Generated   : 3
 Documents Printed : 0
 
-Finished Output Generation At 5:10:14 PM On 10/20/2014
+Finished Output Generation At 9:24:09 AM On 10/24/2014
