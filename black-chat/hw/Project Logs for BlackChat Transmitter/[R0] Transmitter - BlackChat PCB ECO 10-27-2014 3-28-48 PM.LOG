@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=NetC24_1 Pin=X1-2
+Removed Pin From Net: NetName=AGND Pin=X1-5
+Change Component DesignItemId : Designator=X1 Old DesignItemId=RO3101E New DesignItemId=RO3101A
+Change Component Footprint: Designator=C26 Old Footprint=CAPC0805(2012)75_L New Footprint=CAPC0805(2012)75_M
+Change Component Footprint: Designator=C23 Old Footprint=CAPC0805(2012)75_L New Footprint=CAPC0805(2012)75_N
+Change Component Footprint: Designator=R19 Old Footprint=RESC0805(2012)_L New Footprint=RESC0805(2012)_M
+Change Component Footprint: Designator=R22 Old Footprint=RESC0805(2012)_L New Footprint=RESC0805(2012)_M
+Change Component Footprint: Designator=R23 Old Footprint=RESC0805(2012)_L New Footprint=RESC0805(2012)_M
+Change Component Footprint: Designator=R24 Old Footprint=RESC0805(2012)_L New Footprint=RESC0805(2012)_N
+Change Component Footprint: Designator=X1 Old Footprint=RO3101E New Footprint=RO3101A
+Change Component Comment : Designator=X1 Old Comment=RO3101E New Comment=RO3101A
+Added Pin To Net: NetName=NetC24_1 Pin=X1-1
+Added Pin To Net: NetName=AGND Pin=X1-2
+Added Pin To Net: NetName=AGND Pin=X1-3
+Added Pin To Net: NetName=AGND Pin=X1-4

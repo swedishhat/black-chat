@@ -1,0 +1,10 @@
+Output: Bill of Materials
+Type  : BOM
+From  : Variant [[No Variations]] of Project [BlackChat Receiver.PrjPcb]
+   Generated File[Bill of Materials-BlackChat Receiver.xlsx]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 5:10:20 PM On 10/20/2014

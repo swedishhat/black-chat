@@ -1,0 +1,24 @@
+Circuit: * C:\Projects\design2-transceiver\black-chat\hw\sim\OOK_demod.asc
+
+WARNING: Less than two connections to node NEG.  This node is used by V2.
+Direct Newton iteration for .op point succeeded.
+
+Date: Mon Sep 29 03:30:09 2014
+Total elapsed time: 5.202 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 178570
+traniter = 178538
+tranpoints = 89270
+accept = 59008
+rejected = 30262
+matrix size = 28
+fillins = 10
+solver = Normal
+Thread vector: 21.8/17.0[2] 7.0/5.1[2] 3.4/3.2[1] 0.4/0.7[1]  2592/500
+Matrix Compiler1: 2.08 KB object code size  2.0/1.1/[0.3]
+Matrix Compiler2: 2.58 KB object code size  0.7/0.8/[0.4]
+
+

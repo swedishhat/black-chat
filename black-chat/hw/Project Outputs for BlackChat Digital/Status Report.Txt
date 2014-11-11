@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [[R0] Digital - BlackChat.PcbDoc]
+   Generated File[[R0] Digital - BlackChat.TXT]
+   Generated File[[R0] Digital - BlackChat.LDP]
+   Generated File[[R0] Digital - BlackChat.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 9:24:53 AM On 10/24/2014
