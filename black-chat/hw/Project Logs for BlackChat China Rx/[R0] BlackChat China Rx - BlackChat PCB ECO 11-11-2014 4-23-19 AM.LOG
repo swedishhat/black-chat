@@ -1,0 +1,14 @@
+Removed Member From Class: ClassName=BlackChat China Rx Member=C1
+Change Component Footprint: Designator=L1 Old Footprint=AXIAL-0.3 New Footprint=C1210
+Added Component: Designator=CV?(CAP-GSX364)
+Added Component: Designator=J?(PIN1)
+Added Pin To Net: NetName=ANTENNA Pin=J?-1
+Added Pin To Net: NetName=NetC2_1 Pin=C2-1
+Added Pin To Net: NetName=NetC2_1 Pin=CV?-2
+Added Pin To Net: NetName=NetC2_1 Pin=L1-1
+Added Net: Name=NetC2_1
+Added Pin To Net: NetName=NetC5_2 Pin=C5-2
+Added Pin To Net: NetName=NetC5_2 Pin=CV?-1
+Added Net: Name=NetC5_2
+Added Member To Class: ClassName=BlackChat China Rx Member=Component CV? 0.5-4.5pf
+Added Member To Class: ClassName=BlackChat China Rx Member=Component J? Socket

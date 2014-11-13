@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=5V0 Pin=C9-1
+Removed Pin From Net: NetName=GND Pin=C9-2
+Removed Pin From Net: NetName=NetC15_2 Pin=U2-2
+Removed Pin From Net: NetName=NetC20_2 Pin=U2-3
+Removed Pin From Net: NetName=NetC18_1 Pin=U2-5
+Removed Pin From Net: NetName=NetR12_1 Pin=U2-6
+Change Component Comment : Designator=R14 Old Comment=10K 5% 0805(2012) New Comment=1K 5% 0805(2012)
+Change Component Comment : Designator=C5 Old Comment=CAP 2.2pF 16V 0805(2012) New Comment=CAP 22pF 16V 0805(2012)
+Change Component Description : Designator=C5 Old Description=CAP 2.2pF 16V ±0.5pF 0805 (2012 Metric) Thickness 0.75mm SMD New Description=CAP 22pF 16V ±0.5pF 0805 (2012 Metric) Thickness 0.75mm SMD
+Added Pin To Net: NetName=GND Pin=C9-1
+Added Pin To Net: NetName=5V0 Pin=C9-2
+Added Pin To Net: NetName=NetC20_2 Pin=U2-2
+Added Pin To Net: NetName=NetC15_2 Pin=U2-3
+Added Pin To Net: NetName=NetR12_1 Pin=U2-5
+Added Pin To Net: NetName=NetC18_1 Pin=U2-6
