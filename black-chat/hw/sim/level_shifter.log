@@ -1,0 +1,22 @@
+Circuit: * Z:\home\jimbo\Projects\design2-transceiver\black-chat\hw\sim\level_shifter.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Wed Sep 17 08:55:15 2014
+Total elapsed time: 0.090 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2800
+traniter = 2780
+tranpoints = 1347
+accept = 1264
+rejected = 83
+matrix size = 21
+fillins = 14
+solver = Normal
+Matrix Compiler1: 1.42 KB object code size  2.2/1.7/[0.7]
+Matrix Compiler2: 1.73 KB object code size  1.5/1.7/[1.2]
+
+
