@@ -1,0 +1,552 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : sans-serif;
+			color : white;
+			background-color : #21489e;
+			padding: 0.3em;
+		}
+		body {
+			font-family : verdana;
+		}
+		td, th {
+			padding: 0.5em;
+			text-align : center;
+			width : 18%;
+		}
+		th {
+			background-color : #A6CAF0;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+		}
+		
+		.DRC_summary_header {							
+			padding-bottom : 0.1em;
+			border : 0px solid black;							
+			width: 100%;
+                        align: right;
+                        
+		}
+
+		.DRC_summary_header_col1, 
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3
+		{
+			color : black;
+			font-size:150%;
+                        padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2: 0em;
+			border : 0px solid black;
+			width : auto;
+			vertical-align: top;
+			font-weight: bold;				
+		}
+		
+		.DRC_summary_header_col1 	
+		{		                       
+			text-align: right;
+                        width: auto;	
+		}
+
+		.DRC_summary_header_col2 	
+		{		
+			text-align: center;	
+		}
+
+		.DRC_summary_header_col3 	
+		{		
+			text-align: left;	
+		}
+
+
+		
+		.header_holder
+		{
+		Width = 100%;
+		border = 0px solid green;
+		padding = 0;
+		}
+		
+		
+		
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+			left:0;
+			top:0;
+			padding-top : 0.1em;			
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top
+
+		}
+		.front_matter {	
+			
+			margin-top: 5px;
+ 			margin-left: 0px;					 			
+ 			horizontal-align: left;
+		}
+				
+		
+		.front_matter_column1 {
+			width : 10em;	
+			text-align  : right;
+			padding-right:0.1em;
+			
+		}
+		
+		.front_matter_column2 {
+                        width: 0.1em;
+			align: center;
+			text-align : center;
+			margin-right  : 0.1em;	
+			margin-left   : 0.1em;
+		}
+		.front_matter_column3 {
+			width         : auto;  
+			text-align    : left;	
+			margin-right  : 0.5em;				
+		}
+		
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : right;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #EEEEE0 
+		}
+		tr.onmouseout_even { 
+			background-color : #F3F3E3   
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : lightYellow
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #008000 
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD14\Templates\AD-rgb_logo_223x64.gif
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td Style="width:70%">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">10/23/2014</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">4:03:09 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc" class="file"><acronym title="C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc">C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td Style="Width:30%">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3" style="color : red">49</td></tr>
+</table>
+</td>
+</table>
+<hr><a name="IDUAFDQHTQQUJRD5LISFKTFAFJBM"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEPJ02VIQVCGIE00FGLPEGNNFHH">Clearance Constraint (Gap=40mil) (InPolygon),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4MH0BELMEIV5D1QXEATXEQ235B">Clearance Constraint (Gap=10mil) (InComponent('U1')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSQG5TKDH5K4HEFCLOKGDK3UO4G">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOO5ZAQUHC32ZG3CNK4ABWAKC3M">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBNBYTYUMIWN3IALMREKRIVWLAJ">Clearance Constraint (Gap=8.5mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID512UBJE3QKWMKSDQE0WCBPE0GM">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMIOKBYJ3HVCJMNCNRY4TOX5GVK">Width Constraint (Min=10mil) (Max=20mil) (Preferred=20mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMPR0E4OX2D4RC5GJLZ4LDDS1SO">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNATWLHNYOJPSDV053BVLNG2NP">Hole Size Constraint (Min=20mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1I1LF12Z4HNKF2LPT1MOAON5NH">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQRVV3AXU1ZVRIK0TDKXCXXXL4B">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">41</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDGS3VNUPGSF4IVYAPWF1SPYRLH">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3BDLI2G2F30ALYGIZ24BEWQMJH">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVMEKJ25EKDHCNS0XQW1GZJL2IG">Silk primitive without silk layer</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTWUE5ZN4OIZIPCPZUCPVZNSKZM">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFH30N2YCR1XQK5Y1FOZRP0ED3I">Rule</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">49</td>
+</tr>
+</table><br><hr><a name="IDQRVV3AXU1ZVRIK0TDKXCXXXL4B"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2122.874mil|Location2.X=2174.181mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2122.874mil|Location2.X=2174.181mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True">Pad TX-1(2148.528mil,2142mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2063.819mil|Location2.X=2115.126mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2063.819mil|Location2.X=2115.126mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True">Pad TX-2(2089.472mil,2142mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.874mil|Location2.X=2303.181mil|Location1.Y=2029.441mil|Location2.Y=2092.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.874mil|Location2.X=2303.181mil|Location1.Y=2029.441mil|Location2.Y=2092.559mil|Absolute=True">Pad R1-2(2277.528mil,2061mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2192.819mil|Location2.X=2244.126mil|Location1.Y=2029.441mil|Location2.Y=2092.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2192.819mil|Location2.X=2244.126mil|Location1.Y=2029.441mil|Location2.Y=2092.559mil|Absolute=True">Pad R1-1(2218.472mil,2061mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2121.874mil|Location2.X=2173.181mil|Location1.Y=2028.441mil|Location2.Y=2091.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2121.874mil|Location2.X=2173.181mil|Location1.Y=2028.441mil|Location2.Y=2091.559mil|Absolute=True">Pad RX-1(2147.528mil,2060mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.819mil|Location2.X=2114.126mil|Location1.Y=2028.441mil|Location2.Y=2091.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.819mil|Location2.X=2114.126mil|Location1.Y=2028.441mil|Location2.Y=2091.559mil|Absolute=True">Pad RX-2(2088.472mil,2060mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True">Pad U2-16(1956.827mil,1937.252mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1900.772mil|Location2.Y=1922.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1900.772mil|Location2.Y=1922.551mil|Absolute=True">Pad U2-15(1956.827mil,1911.661mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True">Pad U2-17(1956.827mil,1962.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True">Pad U2-16(1956.827mil,1937.252mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True">Pad U2-18(1956.827mil,1988.433mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True">Pad U2-17(1956.827mil,1962.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True">Pad U2-19(1956.827mil,2014.024mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True">Pad U2-18(1956.827mil,1988.433mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True">Pad U2-20(1956.827mil,2039.614mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True">Pad U2-19(1956.827mil,2014.024mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True">Pad U2-21(1956.827mil,2065.205mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True">Pad U2-20(1956.827mil,2039.614mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True">Pad U2-22(1956.827mil,2090.795mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True">Pad U2-21(1956.827mil,2065.205mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True">Pad U2-23(1956.827mil,2116.386mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True">Pad U2-22(1956.827mil,2090.795mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True">Pad U2-24(1956.827mil,2141.976mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True">Pad U2-23(1956.827mil,2116.386mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True">Pad U2-25(1956.827mil,2167.567mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True">Pad U2-24(1956.827mil,2141.976mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True">Pad U2-26(1956.827mil,2193.157mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True">Pad U2-25(1956.827mil,2167.567mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True">Pad U2-27(1956.827mil,2218.748mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True">Pad U2-26(1956.827mil,2193.157mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2233.449mil|Location2.Y=2255.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2233.449mil|Location2.Y=2255.228mil|Absolute=True">Pad U2-28(1956.827mil,2244.339mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1911.488mil|Location2.X=2002.165mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True">Pad U2-27(1956.827mil,2218.748mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True">Pad U2-13(1685.173mil,1937.252mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1900.772mil|Location2.Y=1922.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1900.772mil|Location2.Y=1922.551mil|Absolute=True">Pad U2-14(1685.173mil,1911.661mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True">Pad U2-12(1685.173mil,1962.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1926.362mil|Location2.Y=1948.142mil|Absolute=True">Pad U2-13(1685.173mil,1937.252mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True">Pad U2-11(1685.173mil,1988.433mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1951.953mil|Location2.Y=1973.732mil|Absolute=True">Pad U2-12(1685.173mil,1962.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True">Pad U2-10(1685.173mil,2014.024mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=1977.543mil|Location2.Y=1999.323mil|Absolute=True">Pad U2-11(1685.173mil,1988.433mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True">Pad U2-9(1685.173mil,2039.614mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2003.134mil|Location2.Y=2024.913mil|Absolute=True">Pad U2-10(1685.173mil,2014.024mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True">Pad U2-8(1685.173mil,2065.205mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2028.725mil|Location2.Y=2050.504mil|Absolute=True">Pad U2-9(1685.173mil,2039.614mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True">Pad U2-7(1685.173mil,2090.795mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2054.315mil|Location2.Y=2076.094mil|Absolute=True">Pad U2-8(1685.173mil,2065.205mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True">Pad U2-6(1685.173mil,2116.386mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2079.906mil|Location2.Y=2101.685mil|Absolute=True">Pad U2-7(1685.173mil,2090.795mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True">Pad U2-5(1685.173mil,2141.976mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2105.496mil|Location2.Y=2127.276mil|Absolute=True">Pad U2-6(1685.173mil,2116.386mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True">Pad U2-4(1685.173mil,2167.567mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2131.087mil|Location2.Y=2152.866mil|Absolute=True">Pad U2-5(1685.173mil,2141.976mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True">Pad U2-3(1685.173mil,2193.157mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2156.677mil|Location2.Y=2178.457mil|Absolute=True">Pad U2-4(1685.173mil,2167.567mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True">Pad U2-2(1685.173mil,2218.748mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2182.268mil|Location2.Y=2204.047mil|Absolute=True">Pad U2-3(1685.173mil,2193.157mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2233.449mil|Location2.Y=2255.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2233.449mil|Location2.Y=2255.228mil|Absolute=True">Pad U2-1(1685.173mil,2244.339mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1639.835mil|Location2.X=1730.512mil|Location1.Y=2207.858mil|Location2.Y=2229.638mil|Absolute=True">Pad U2-2(1685.173mil,2218.748mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.874mil|Location2.X=2303.181mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.874mil|Location2.X=2303.181mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True">Pad R2-2(2277.528mil,2142mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2192.819mil|Location2.X=2244.126mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2192.819mil|Location2.X=2244.126mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True">Pad R2-1(2218.472mil,2142mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2089.819mil|Location2.X=2141.126mil|Location1.Y=3768.441mil|Location2.Y=3831.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2089.819mil|Location2.X=2141.126mil|Location1.Y=3768.441mil|Location2.Y=3831.559mil|Absolute=True">Pad C10-1(2115.472mil,3800mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2148.874mil|Location2.X=2200.181mil|Location1.Y=3768.441mil|Location2.Y=3831.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2148.874mil|Location2.X=2200.181mil|Location1.Y=3768.441mil|Location2.Y=3831.559mil|Absolute=True">Pad C10-2(2174.528mil,3800mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2036.551mil|Location2.X=2087.858mil|Location1.Y=3886.945mil|Location2.Y=3950.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2036.551mil|Location2.X=2087.858mil|Location1.Y=3886.945mil|Location2.Y=3950.063mil|Absolute=True">Pad C6-1(2062.205mil,3918.504mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2095.606mil|Location2.X=2146.913mil|Location1.Y=3886.945mil|Location2.Y=3950.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2095.606mil|Location2.X=2146.913mil|Location1.Y=3886.945mil|Location2.Y=3950.063mil|Absolute=True">Pad C6-2(2121.26mil,3918.504mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.819mil|Location2.X=1831.126mil|Location1.Y=2007.441mil|Location2.Y=2070.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.819mil|Location2.X=1831.126mil|Location1.Y=2007.441mil|Location2.Y=2070.559mil|Absolute=True">Pad C5-1(1805.473mil,2039mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1838.874mil|Location2.X=1890.181mil|Location1.Y=2007.441mil|Location2.Y=2070.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1838.874mil|Location2.X=1890.181mil|Location1.Y=2007.441mil|Location2.Y=2070.559mil|Absolute=True">Pad C5-2(1864.528mil,2039mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1814.874mil|Location2.X=1866.181mil|Location1.Y=2085.441mil|Location2.Y=2148.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1814.874mil|Location2.X=1866.181mil|Location1.Y=2085.441mil|Location2.Y=2148.559mil|Absolute=True">Pad C4-1(1840.527mil,2117mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1755.819mil|Location2.X=1807.126mil|Location1.Y=2085.441mil|Location2.Y=2148.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1755.819mil|Location2.X=1807.126mil|Location1.Y=2085.441mil|Location2.Y=2148.559mil|Absolute=True">Pad C4-2(1781.472mil,2117mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1838.874mil|Location2.X=1890.181mil|Location1.Y=1931.441mil|Location2.Y=1994.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1838.874mil|Location2.X=1890.181mil|Location1.Y=1931.441mil|Location2.Y=1994.559mil|Absolute=True">Pad C1-1(1864.527mil,1963mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.819mil|Location2.X=1831.126mil|Location1.Y=1931.441mil|Location2.Y=1994.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.819mil|Location2.X=1831.126mil|Location1.Y=1931.441mil|Location2.Y=1994.559mil|Absolute=True">Pad C1-2(1805.472mil,1963mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2504.819mil|Location2.X=2556.126mil|Location1.Y=2133.441mil|Location2.Y=2196.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2504.819mil|Location2.X=2556.126mil|Location1.Y=2133.441mil|Location2.Y=2196.559mil|Absolute=True">Pad C2-1(2530.472mil,2165mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.874mil|Location2.X=2615.181mil|Location1.Y=2133.441mil|Location2.Y=2196.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.874mil|Location2.X=2615.181mil|Location1.Y=2133.441mil|Location2.Y=2196.559mil|Absolute=True">Pad C2-2(2589.528mil,2165mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.874mil|Location2.X=2615.181mil|Location1.Y=2273.441mil|Location2.Y=2336.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.874mil|Location2.X=2615.181mil|Location1.Y=2273.441mil|Location2.Y=2336.559mil|Absolute=True">Pad C3-1(2589.528mil,2305mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2504.819mil|Location2.X=2556.126mil|Location1.Y=2273.441mil|Location2.Y=2336.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2504.819mil|Location2.X=2556.126mil|Location1.Y=2273.441mil|Location2.Y=2336.559mil|Absolute=True">Pad C3-2(2530.472mil,2305mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.819mil|Location2.X=2071.126mil|Location1.Y=4043.441mil|Location2.Y=4106.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.819mil|Location2.X=2071.126mil|Location1.Y=4043.441mil|Location2.Y=4106.559mil|Absolute=True">Pad R3-2(2045.472mil,4075mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2078.874mil|Location2.X=2130.181mil|Location1.Y=4043.441mil|Location2.Y=4106.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2078.874mil|Location2.X=2130.181mil|Location1.Y=4043.441mil|Location2.Y=4106.559mil|Absolute=True">Pad R3-1(2104.528mil,4075mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.937mil|Location2.X=2013.055mil|Location1.Y=3753.087mil|Location2.Y=3804.394mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.937mil|Location2.X=2013.055mil|Location1.Y=3753.087mil|Location2.Y=3804.394mil|Absolute=True">Pad C7-1(1981.496mil,3778.74mil)  Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.937mil|Location2.X=2013.055mil|Location1.Y=3812.142mil|Location2.Y=3863.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.937mil|Location2.X=2013.055mil|Location1.Y=3812.142mil|Location2.Y=3863.449mil|Absolute=True">Pad C7-2(1981.496mil,3837.795mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2043.5mil|Location2.X=2086.5mil|Location1.Y=3973.5mil|Location2.Y=4016.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2043.5mil|Location2.X=2086.5mil|Location1.Y=3973.5mil|Location2.Y=4016.5mil|Absolute=True">Via (2065mil,3995mil) Top Layer to Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1998.5mil|Location2.X=2041.5mil|Location1.Y=3973.5mil|Location2.Y=4016.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1998.5mil|Location2.X=2041.5mil|Location1.Y=3973.5mil|Location2.Y=4016.5mil|Absolute=True">Via (2020mil,3995mil) Top Layer to Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2042.5mil|Location2.X=2083.5mil|Location1.Y=1976.5mil|Location2.Y=2017.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2042.5mil|Location2.X=2083.5mil|Location1.Y=1976.5mil|Location2.Y=2017.5mil|Absolute=True">Via (2063mil,1997mil) Top Layer to Bottom Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2015.158mil|Location2.X=2057.157mil|Location1.Y=1941.842mil|Location2.Y=1983.842mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2015.158mil|Location2.X=2057.157mil|Location1.Y=1941.842mil|Location2.Y=1983.842mil|Absolute=True">Via (2036.158mil,1962.842mil) Top Layer to Bottom Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDDGS3VNUPGSF4IVYAPWF1SPYRLH"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2049mil|Location2.X=2059mil|Location1.Y=2107mil|Location2.Y=2177mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2049mil|Location2.X=2059mil|Location1.Y=2107mil|Location2.Y=2177mil|Absolute=True">Track (2054mil,2112mil)(2054mil,2172mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2063.819mil|Location2.X=2115.126mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2063.819mil|Location2.X=2115.126mil|Location1.Y=2110.441mil|Location2.Y=2173.559mil|Absolute=True">Pad TX-2(2089.472mil,2142mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2048mil|Location2.X=2058mil|Location1.Y=2025mil|Location2.Y=2095mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2048mil|Location2.X=2058mil|Location1.Y=2025mil|Location2.Y=2095mil|Absolute=True">Track (2053mil,2030mil)(2053mil,2090mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.819mil|Location2.X=2114.126mil|Location1.Y=2028.441mil|Location2.Y=2091.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.819mil|Location2.X=2114.126mil|Location1.Y=2028.441mil|Location2.Y=2091.559mil|Absolute=True">Pad RX-2(2088.472mil,2060mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4554.882mil|Location2.Y=4564.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4554.882mil|Location2.Y=4564.882mil|Absolute=True">Track (1041.574mil,4559.882mil)(1441.574mil,4559.882mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306mil|Location2.X=1374mil|Location1.Y=4561mil|Location2.Y=4669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306mil|Location2.X=1374mil|Location1.Y=4561mil|Location2.Y=4669mil|Absolute=True">Pad S1-2(1340mil,4615mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4968.268mil|Location2.Y=4978.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4968.268mil|Location2.Y=4978.268mil|Absolute=True">Track (1041.574mil,4973.268mil)(1441.574mil,4973.268mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306mil|Location2.X=1374mil|Location1.Y=4861mil|Location2.Y=4969mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306mil|Location2.X=1374mil|Location1.Y=4861mil|Location2.Y=4969mil|Absolute=True">Pad S1-3(1340mil,4915mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4968.268mil|Location2.Y=4978.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4968.268mil|Location2.Y=4978.268mil|Absolute=True">Track (1041.574mil,4973.268mil)(1441.574mil,4973.268mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1106mil|Location2.X=1174mil|Location1.Y=4861mil|Location2.Y=4969mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1106mil|Location2.X=1174mil|Location1.Y=4861mil|Location2.Y=4969mil|Absolute=True">Pad S1-4(1140mil,4915mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4554.882mil|Location2.Y=4564.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1036.574mil|Location2.X=1446.574mil|Location1.Y=4554.882mil|Location2.Y=4564.882mil|Absolute=True">Track (1041.574mil,4559.882mil)(1441.574mil,4559.882mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1106mil|Location2.X=1174mil|Location1.Y=4561mil|Location2.Y=4669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1106mil|Location2.X=1174mil|Location1.Y=4561mil|Location2.Y=4669mil|Absolute=True">Pad S1-1(1140mil,4615mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2469.465mil|Location2.X=2479.465mil|Location1.Y=1767.63mil|Location2.Y=2256.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2469.465mil|Location2.X=2479.465mil|Location1.Y=1767.63mil|Location2.Y=2256.37mil|Absolute=True">Track (2474.465mil,1772.63mil)(2474.465mil,2251.37mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2481.941mil|Location2.X=2544.941mil|Location1.Y=1931.287mil|Location2.Y=1994.287mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2481.941mil|Location2.X=2544.941mil|Location1.Y=1931.287mil|Location2.Y=1994.287mil|Absolute=True">Pad J1-2(2513.441mil,1962.787mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2469.465mil|Location2.X=2479.465mil|Location1.Y=1767.63mil|Location2.Y=2256.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2469.465mil|Location2.X=2479.465mil|Location1.Y=1767.63mil|Location2.Y=2256.37mil|Absolute=True">Track (2474.465mil,1772.63mil)(2474.465mil,2251.37mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2481.941mil|Location2.X=2544.941mil|Location1.Y=2029.713mil|Location2.Y=2092.713mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Russell\Documents\Projects\design2-transceiver\black-chat\hw\[R0] Digital - BlackChat.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2481.941mil|Location2.X=2544.941mil|Location1.Y=2029.713mil|Location2.Y=2092.713mil|Absolute=True">Pad J1-1(2513.441mil,2061.213mil)  Multi-Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br></body>
+</html>

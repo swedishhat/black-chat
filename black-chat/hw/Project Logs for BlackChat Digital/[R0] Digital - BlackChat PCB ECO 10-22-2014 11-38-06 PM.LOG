@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=XIN Pin=C8-1
+Removed Pin From Net: NetName=GND Pin=C8-2
+Removed Pin From Net: NetName=XT2IN Pin=C9-1
+Removed Pin From Net: NetName=GND Pin=C9-2
+Removed Pin From Net: NetName=XOUT Pin=C11-1
+Removed Pin From Net: NetName=GND Pin=C11-2
+Removed Pin From Net: NetName=XT2OUT Pin=C12-1
+Removed Pin From Net: NetName=GND Pin=C12-2
+Removed Pin From Net: NetName=XOUT Pin=Y1-1
+Removed Pin From Net: NetName=XIN Pin=Y1-2
+Removed Pin From Net: NetName=XT2OUT Pin=Y2-1
+Removed Pin From Net: NetName=XT2IN Pin=Y2-2
+Removed Member From Class: ClassName=Digital - BlackChat Member=C8
+Removed Member From Class: ClassName=Digital - BlackChat Member=C9
+Removed Member From Class: ClassName=Digital - BlackChat Member=C11
+Removed Member From Class: ClassName=Digital - BlackChat Member=C12
+Removed Member From Class: ClassName=Digital - BlackChat Member=Y1
+Removed Member From Class: ClassName=Digital - BlackChat Member=Y2

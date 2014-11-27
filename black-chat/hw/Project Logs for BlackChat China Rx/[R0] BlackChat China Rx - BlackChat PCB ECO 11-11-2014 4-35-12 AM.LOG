@@ -1,0 +1,7 @@
+Change Component Designator: OldDesignator=CV? NewDesignator=CV1
+Change Component Designator: OldDesignator=J? NewDesignator=J1
+Added Component: Designator=P1(HDR1X3)
+Added Pin To Net: NetName=5V0 Pin=P1-1
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=DATA Pin=P1-3
+Added Member To Class: ClassName=BlackChat China Rx Member=Component P1 Header 3

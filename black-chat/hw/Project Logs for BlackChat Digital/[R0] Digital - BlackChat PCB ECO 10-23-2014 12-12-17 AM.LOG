@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=TX_LED Pin=CBUS-1
+Removed Pin From Net: NetName=RX_LED Pin=CBUS-2
+Removed Pin From Net: NetName=NetCBUS_3 Pin=CBUS-3
+Removed Pin From Net: NetName=NetCBUS_4 Pin=CBUS-4
+Removed Pin From Net: NetName=NetCBUS_5 Pin=CBUS-5
+Removed Member From Class: ClassName=Digital - BlackChat Member=CBUS
+Added Component: Designator=C_BUS(HDR1X3)
+Added Pin To Net: NetName=NetCBUS_3 Pin=C_BUS-1
+Added Pin To Net: NetName=NetCBUS_4 Pin=C_BUS-2
+Added Pin To Net: NetName=NetCBUS_5 Pin=C_BUS-3
+Change Net Name : Old Net Name=NetCBUS_3 New Net Name=NetC_BUS_1
+Change Net Name : Old Net Name=NetCBUS_4 New Net Name=NetC_BUS_2
+Change Net Name : Old Net Name=NetCBUS_5 New Net Name=NetC_BUS_3
+Added Member To Class: ClassName=Digital - BlackChat Member=Component C_BUS Header 3
