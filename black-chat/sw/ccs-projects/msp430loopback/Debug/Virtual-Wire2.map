@@ -1,0 +1,850 @@
+******************************************************************************
+                  MSP430 Linker PC v4.3.3                      
+******************************************************************************
+>> Linked Fri Nov 21 08:55:23 2014
+
+OUTPUT FILE NAME:   <Virtual-Wire2.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00003100
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  SFR                   00000000   00000010  00000000  00000010  RWIX
+  PERIPHERALS_8BIT      00000010   000000f0  00000000  000000f0  RWIX
+  PERIPHERALS_16BIT     00000100   00000100  00000000  00000100  RWIX
+  INFOD                 00001000   00000040  00000000  00000040  RWIX
+  INFOC                 00001040   00000040  00000000  00000040  RWIX
+  INFOB                 00001080   00000040  00000000  00000040  RWIX
+  INFOA                 000010c0   00000040  00000000  00000040  RWIX
+  RAM                   00001100   00002000  000000de  00001f22  RWIX
+  FLASH                 00003100   0000cebe  00000073  0000ce4b  RWIX
+  INT00                 0000ffc0   00000002  00000002  00000000  RWIX
+  INT01                 0000ffc2   00000002  00000002  00000000  RWIX
+  INT02                 0000ffc4   00000002  00000002  00000000  RWIX
+  INT03                 0000ffc6   00000002  00000002  00000000  RWIX
+  INT04                 0000ffc8   00000002  00000002  00000000  RWIX
+  INT05                 0000ffca   00000002  00000002  00000000  RWIX
+  INT06                 0000ffcc   00000002  00000002  00000000  RWIX
+  INT07                 0000ffce   00000002  00000002  00000000  RWIX
+  INT08                 0000ffd0   00000002  00000002  00000000  RWIX
+  INT09                 0000ffd2   00000002  00000002  00000000  RWIX
+  INT10                 0000ffd4   00000002  00000002  00000000  RWIX
+  INT11                 0000ffd6   00000002  00000002  00000000  RWIX
+  INT12                 0000ffd8   00000002  00000002  00000000  RWIX
+  INT13                 0000ffda   00000002  00000002  00000000  RWIX
+  INT14                 0000ffdc   00000002  00000002  00000000  RWIX
+  INT15                 0000ffde   00000002  00000002  00000000  RWIX
+  INT16                 0000ffe0   00000002  00000002  00000000  RWIX
+  INT17                 0000ffe2   00000002  00000002  00000000  RWIX
+  INT18                 0000ffe4   00000002  00000002  00000000  RWIX
+  INT19                 0000ffe6   00000002  00000002  00000000  RWIX
+  INT20                 0000ffe8   00000002  00000002  00000000  RWIX
+  INT21                 0000ffea   00000002  00000002  00000000  RWIX
+  INT22                 0000ffec   00000002  00000002  00000000  RWIX
+  INT23                 0000ffee   00000002  00000002  00000000  RWIX
+  INT24                 0000fff0   00000002  00000002  00000000  RWIX
+  INT25                 0000fff2   00000002  00000002  00000000  RWIX
+  INT26                 0000fff4   00000002  00000002  00000000  RWIX
+  INT27                 0000fff6   00000002  00000002  00000000  RWIX
+  INT28                 0000fff8   00000002  00000002  00000000  RWIX
+  INT29                 0000fffa   00000002  00000002  00000000  RWIX
+  INT30                 0000fffc   00000002  00000002  00000000  RWIX
+  RESET                 0000fffe   00000002  00000002  00000000  RWIX
+  FLASH2                00010000   0000a000  00000582  00009a7e  RWIX
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.init_array 
+*          0    00003100    00000000     UNINITIALIZED
+
+.data      0    00001100    00000070     UNINITIALIZED
+                  00001100    00000044     VirtualWire.obj (.data:vw_tx_buf)
+                  00001144    0000001b     VirtualWire.obj (.data)
+                  0000115f    00000001     --HOLE--
+                  00001160    00000010     VirtualWire.obj (.data:symbols)
+
+.TI.persistent 
+*          0    00001100    00000000     UNINITIALIZED
+
+.bss       0    00001170    0000001e     UNINITIALIZED
+                  00001170    0000001e     (.common:vw_rx_buf)
+
+.TI.noinit 
+*          0    00001170    00000000     UNINITIALIZED
+
+.stack     0    000030b0    00000050     UNINITIALIZED
+                  000030b0    00000004     rts430x_lc_rd_eabi.lib : boot.obj (.stack)
+                  000030b4    0000004c     --HOLE--
+
+.text:_isr 
+*          0    00003100    00000024     
+                  00003100    0000001a     rts430x_lc_rd_eabi.lib : boot.obj (.text:_isr:_c_int00_noexit)
+                  0000311a    0000000a     VirtualWire.obj (.text:_isr:TIMERA0_ISR)
+
+.const     0    00003124    00000007     
+                  00003124    00000007     main.obj (.const:.string:$P$T0$1)
+
+.cinit     0    0000312c    00000048     
+                  0000312c    00000025     (.cinit..data.load) [load image, compression = rle]
+                  00003151    00000001     --HOLE-- [fill = 0]
+                  00003152    0000000c     (__TI_handler_table)
+                  0000315e    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  00003164    00000010     (__TI_cinit_table)
+
+RESERVED0 
+*          0    0000ffc0    00000002     
+                  0000ffc0    00000002     rts430x_lc_rd_eabi.lib : int00.obj (.int00)
+
+RESERVED1 
+*          0    0000ffc2    00000002     
+                  0000ffc2    00000002     rts430x_lc_rd_eabi.lib : int01.obj (.int01)
+
+RESERVED2 
+*          0    0000ffc4    00000002     
+                  0000ffc4    00000002     rts430x_lc_rd_eabi.lib : int02.obj (.int02)
+
+RESERVED3 
+*          0    0000ffc6    00000002     
+                  0000ffc6    00000002     rts430x_lc_rd_eabi.lib : int03.obj (.int03)
+
+RESERVED4 
+*          0    0000ffc8    00000002     
+                  0000ffc8    00000002     rts430x_lc_rd_eabi.lib : int04.obj (.int04)
+
+RESERVED5 
+*          0    0000ffca    00000002     
+                  0000ffca    00000002     rts430x_lc_rd_eabi.lib : int05.obj (.int05)
+
+RESERVED6 
+*          0    0000ffcc    00000002     
+                  0000ffcc    00000002     rts430x_lc_rd_eabi.lib : int06.obj (.int06)
+
+RESERVED7 
+*          0    0000ffce    00000002     
+                  0000ffce    00000002     rts430x_lc_rd_eabi.lib : int07.obj (.int07)
+
+RESERVED8 
+*          0    0000ffd0    00000002     
+                  0000ffd0    00000002     rts430x_lc_rd_eabi.lib : int08.obj (.int08)
+
+RESERVED9 
+*          0    0000ffd2    00000002     
+                  0000ffd2    00000002     rts430x_lc_rd_eabi.lib : int09.obj (.int09)
+
+RESERVED10 
+*          0    0000ffd4    00000002     
+                  0000ffd4    00000002     rts430x_lc_rd_eabi.lib : int10.obj (.int10)
+
+RESERVED11 
+*          0    0000ffd6    00000002     
+                  0000ffd6    00000002     rts430x_lc_rd_eabi.lib : int11.obj (.int11)
+
+RESERVED12 
+*          0    0000ffd8    00000002     
+                  0000ffd8    00000002     rts430x_lc_rd_eabi.lib : int12.obj (.int12)
+
+RESERVED13 
+*          0    0000ffda    00000002     
+                  0000ffda    00000002     rts430x_lc_rd_eabi.lib : int13.obj (.int13)
+
+DAC12      0    0000ffdc    00000002     
+                  0000ffdc    00000002     rts430x_lc_rd_eabi.lib : int14.obj (.int14)
+
+DMA        0    0000ffde    00000002     
+                  0000ffde    00000002     rts430x_lc_rd_eabi.lib : int15.obj (.int15)
+
+USCIAB1TX 
+*          0    0000ffe0    00000002     
+                  0000ffe0    00000002     rts430x_lc_rd_eabi.lib : int16.obj (.int16)
+
+USCIAB1RX 
+*          0    0000ffe2    00000002     
+                  0000ffe2    00000002     rts430x_lc_rd_eabi.lib : int17.obj (.int17)
+
+PORT1      0    0000ffe4    00000002     
+                  0000ffe4    00000002     rts430x_lc_rd_eabi.lib : int18.obj (.int18)
+
+PORT2      0    0000ffe6    00000002     
+                  0000ffe6    00000002     rts430x_lc_rd_eabi.lib : int19.obj (.int19)
+
+RESERVED20 
+*          0    0000ffe8    00000002     
+                  0000ffe8    00000002     rts430x_lc_rd_eabi.lib : int20.obj (.int20)
+
+ADC12      0    0000ffea    00000002     
+                  0000ffea    00000002     rts430x_lc_rd_eabi.lib : int21.obj (.int21)
+
+USCIAB0TX 
+*          0    0000ffec    00000002     
+                  0000ffec    00000002     rts430x_lc_rd_eabi.lib : int22.obj (.int22)
+
+USCIAB0RX 
+*          0    0000ffee    00000002     
+                  0000ffee    00000002     rts430x_lc_rd_eabi.lib : int23.obj (.int23)
+
+TIMERA1    0    0000fff0    00000002     
+                  0000fff0    00000002     rts430x_lc_rd_eabi.lib : int24.obj (.int24)
+
+TIMERA0    0    0000fff2    00000002     
+                  0000fff2    00000002     VirtualWire.obj (.int25)
+
+WDT        0    0000fff4    00000002     
+                  0000fff4    00000002     rts430x_lc_rd_eabi.lib : int26.obj (.int26)
+
+COMPARATORA 
+*          0    0000fff6    00000002     
+                  0000fff6    00000002     rts430x_lc_rd_eabi.lib : int27.obj (.int27)
+
+TIMERB1    0    0000fff8    00000002     
+                  0000fff8    00000002     rts430x_lc_rd_eabi.lib : int28.obj (.int28)
+
+TIMERB0    0    0000fffa    00000002     
+                  0000fffa    00000002     rts430x_lc_rd_eabi.lib : int29.obj (.int29)
+
+NMI        0    0000fffc    00000002     
+                  0000fffc    00000002     rts430x_lc_rd_eabi.lib : int30.obj (.int30)
+
+.reset     0    0000fffe    00000002     
+                  0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
+
+.text      0    00010000    00000582     
+                  00010000    0000010e     VirtualWire.obj (.text:vw_send)
+                  0001010e    000000f8     VirtualWire.obj (.text:vw_pll)
+                  00010206    000000a2     VirtualWire.obj (.text:vw_Int_Handler)
+                  000102a8    0000006e     rts430x_lc_rd_eabi.lib : autoinit.obj (.text:_auto_init_hold_wdt)
+                  00010316    00000062                            : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  00010378    00000058                            : div32u.obj (.text)
+                  000103d0    00000050     main.obj (.text:main)
+                  00010420    00000050     VirtualWire.obj (.text:vw_setup)
+                  00010470    00000034     VirtualWire.obj (.text:vw_tx_start)
+                  000104a4    00000028     VirtualWire.obj (.text:vw_tx_stop)
+                  000104cc    00000026     VirtualWire.obj (.text:_crc_ccitt_update)
+                  000104f2    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  00010516    00000020     VirtualWire.obj (.text:vw_symbol_6to4)
+                  00010536    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
+                  0001054a    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  0001055c    0000000a                            : lsr16.obj (.text)
+                  00010566    00000008     VirtualWire.obj (.text:vw_wait_tx)
+                  0001056e    00000006     rts430x_lc_rd_eabi.lib : isr_trap.obj (.text:__TI_ISR_TRAP)
+                  00010574    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  0001057a    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  0001057e    00000004                            : exit.obj (.text:abort)
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00003164 records: 2, size/record: 8, table size: 16
+	.data: load addr=0000312c, load size=00000025 bytes, run addr=00001100, run size=00000070 bytes, compression=rle
+	.bss: load addr=0000315e, load size=00000006 bytes, run addr=00001170, run size=0000001e bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00003152 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_rle24
+	index: 2, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+000001a0   ADC12CTL0
+000001a2   ADC12CTL1
+000001a6   ADC12IE
+000001a4   ADC12IFG
+000001a8   ADC12IV
+00000080   ADC12MCTL0
+00000081   ADC12MCTL1
+0000008a   ADC12MCTL10
+0000008b   ADC12MCTL11
+0000008c   ADC12MCTL12
+0000008d   ADC12MCTL13
+0000008e   ADC12MCTL14
+0000008f   ADC12MCTL15
+00000082   ADC12MCTL2
+00000083   ADC12MCTL3
+00000084   ADC12MCTL4
+00000085   ADC12MCTL5
+00000086   ADC12MCTL6
+00000087   ADC12MCTL7
+00000088   ADC12MCTL8
+00000089   ADC12MCTL9
+00000140   ADC12MEM0
+00000142   ADC12MEM1
+00000154   ADC12MEM10
+00000156   ADC12MEM11
+00000158   ADC12MEM12
+0000015a   ADC12MEM13
+0000015c   ADC12MEM14
+0000015e   ADC12MEM15
+00000144   ADC12MEM2
+00000146   ADC12MEM3
+00000148   ADC12MEM4
+0000014a   ADC12MEM5
+0000014c   ADC12MEM6
+0000014e   ADC12MEM7
+00000150   ADC12MEM8
+00000152   ADC12MEM9
+00000057   BCSCTL1
+00000058   BCSCTL2
+00000053   BCSCTL3
+0001057e   C$$EXIT
+00000059   CACTL1
+0000005a   CACTL2
+000010fb   CALBC1_12MHZ
+000010f9   CALBC1_16MHZ
+000010ff   CALBC1_1MHZ
+000010fd   CALBC1_8MHZ
+000010fa   CALDCO_12MHZ
+000010f8   CALDCO_16MHZ
+000010fe   CALDCO_1MHZ
+000010fc   CALDCO_8MHZ
+0000005b   CAPD
+000001c0   DAC12_0CTL
+000001c8   DAC12_0DAT
+000001c2   DAC12_1CTL
+000001ca   DAC12_1DAT
+00000056   DCOCTL
+000001d0   DMA0CTL
+000001d6   DMA0DA
+000001d6   DMA0DAL
+000001d2   DMA0SA
+000001d2   DMA0SAL
+000001da   DMA0SZ
+000001dc   DMA1CTL
+000001e2   DMA1DA
+000001e2   DMA1DAL
+000001de   DMA1SA
+000001de   DMA1SAL
+000001e6   DMA1SZ
+000001e8   DMA2CTL
+000001ee   DMA2DA
+000001ee   DMA2DAL
+000001ea   DMA2SA
+000001ea   DMA2SAL
+000001f2   DMA2SZ
+00000122   DMACTL0
+00000124   DMACTL1
+00000126   DMAIV
+00000128   FCTL1
+0000012a   FCTL2
+0000012c   FCTL3
+000001be   FCTL4
+00000000   IE1
+00000001   IE2
+00000002   IFG1
+00000003   IFG2
+00000134   MAC
+00000136   MACS
+00000130   MPY
+00000132   MPYS
+00000138   OP2
+00000022   P1DIR
+00000025   P1IE
+00000024   P1IES
+00000023   P1IFG
+00000020   P1IN
+00000021   P1OUT
+00000027   P1REN
+00000026   P1SEL
+0000002a   P2DIR
+0000002d   P2IE
+0000002c   P2IES
+0000002b   P2IFG
+00000028   P2IN
+00000029   P2OUT
+0000002f   P2REN
+0000002e   P2SEL
+0000001a   P3DIR
+00000018   P3IN
+00000019   P3OUT
+00000010   P3REN
+0000001b   P3SEL
+0000001e   P4DIR
+0000001c   P4IN
+0000001d   P4OUT
+00000011   P4REN
+0000001f   P4SEL
+00000032   P5DIR
+00000030   P5IN
+00000031   P5OUT
+00000012   P5REN
+00000033   P5SEL
+00000036   P6DIR
+00000034   P6IN
+00000035   P6OUT
+00000013   P6REN
+00000037   P6SEL
+0000003c   P7DIR
+00000038   P7IN
+0000003a   P7OUT
+00000014   P7REN
+0000003e   P7SEL
+0000003d   P8DIR
+00000039   P8IN
+0000003b   P8OUT
+00000015   P8REN
+0000003f   P8SEL
+0000003c   PADIR
+00000038   PAIN
+0000003a   PAOUT
+00000014   PAREN
+0000003e   PASEL
+0000013c   RESHI
+0000013a   RESLO
+0000013e   SUMEXT
+00000055   SVSCTL
+00000172   TACCR0
+00000174   TACCR1
+00000176   TACCR2
+00000162   TACCTL0
+00000164   TACCTL1
+00000166   TACCTL2
+00000160   TACTL
+0000012e   TAIV
+00000170   TAR
+00000192   TBCCR0
+00000194   TBCCR1
+00000196   TBCCR2
+00000198   TBCCR3
+0000019a   TBCCR4
+0000019c   TBCCR5
+0000019e   TBCCR6
+00000182   TBCCTL0
+00000184   TBCCTL1
+00000186   TBCCTL2
+00000188   TBCCTL3
+0000018a   TBCCTL4
+0000018c   TBCCTL5
+0000018e   TBCCTL6
+00000180   TBCTL
+0000011e   TBIV
+00000190   TBR
+0000311a   TIMERA0_ISR
+000010db   TLV_ADC12_1_LEN
+000010da   TLV_ADC12_1_TAG
+000010c0   TLV_CHECKSUM
+000010f7   TLV_DCO_30_LEN
+000010f6   TLV_DCO_30_TAG
+00000006   UC1IE
+00000007   UC1IFG
+0000005d   UCA0ABCTL
+00000062   UCA0BR0
+00000063   UCA0BR1
+00000060   UCA0CTL0
+00000061   UCA0CTL1
+0000005f   UCA0IRRCTL
+0000005e   UCA0IRTCTL
+00000064   UCA0MCTL
+00000066   UCA0RXBUF
+00000065   UCA0STAT
+00000067   UCA0TXBUF
+000000cd   UCA1ABCTL
+000000d2   UCA1BR0
+000000d3   UCA1BR1
+000000d0   UCA1CTL0
+000000d1   UCA1CTL1
+000000cf   UCA1IRRCTL
+000000ce   UCA1IRTCTL
+000000d4   UCA1MCTL
+000000d6   UCA1RXBUF
+000000d5   UCA1STAT
+000000d7   UCA1TXBUF
+0000006a   UCB0BR0
+0000006b   UCB0BR1
+00000068   UCB0CTL0
+00000069   UCB0CTL1
+0000006c   UCB0I2CIE
+00000118   UCB0I2COA
+0000011a   UCB0I2CSA
+0000006e   UCB0RXBUF
+0000006d   UCB0STAT
+0000006f   UCB0TXBUF
+000000da   UCB1BR0
+000000db   UCB1BR1
+000000d8   UCB1CTL0
+000000d9   UCB1CTL1
+000000dc   UCB1I2CIE
+0000017c   UCB1I2COA
+0000017e   UCB1I2CSA
+000000de   UCB1RXBUF
+000000dd   UCB1STAT
+000000df   UCB1TXBUF
+00000120   WDTCTL
+00003100   __STACK_END
+00000050   __STACK_SIZE
+00003164   __TI_CINIT_Base
+00003174   __TI_CINIT_Limit
+00003152   __TI_Handler_Table_Base
+0000315e   __TI_Handler_Table_Limit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+0001056e   __TI_ISR_TRAP
+00000001   __TI_args_main
+0001054a   __TI_decompress_none
+00010574   __TI_decompress_rle24
+00000001   __TI_exit
+0000ffc0   __TI_int00
+0000ffc2   __TI_int01
+0000ffc4   __TI_int02
+0000ffc6   __TI_int03
+0000ffc8   __TI_int04
+0000ffca   __TI_int05
+0000ffcc   __TI_int06
+0000ffce   __TI_int07
+0000ffd0   __TI_int08
+0000ffd2   __TI_int09
+0000ffd4   __TI_int10
+0000ffd6   __TI_int11
+0000ffd8   __TI_int12
+0000ffda   __TI_int13
+0000ffdc   __TI_int14
+0000ffde   __TI_int15
+0000ffe0   __TI_int16
+0000ffe2   __TI_int17
+0000ffe4   __TI_int18
+0000ffe6   __TI_int19
+0000ffe8   __TI_int20
+0000ffea   __TI_int21
+0000ffec   __TI_int22
+0000ffee   __TI_int23
+0000fff0   __TI_int24
+0000fff2   __TI_int25
+0000fff4   __TI_int26
+0000fff6   __TI_int27
+0000fff8   __TI_int28
+0000fffa   __TI_int29
+0000fffc   __TI_int30
+000104f2   __TI_zero_init
+ffffffff   __binit__
+ffffffff   __c_args__
+00010378   __mspabi_divul
+00010378   __mspabi_remul
+0001055c   __mspabi_srli
+000102a8   _auto_init_hold_wdt
+00003100   _c_int00
+00003100   _c_int00_noexit
+000104cc   _crc_ccitt_update
+0000fffe   _reset_vector
+000030b0   _stack
+0001057a   _system_pre_init
+0001057e   abort
+ffffffff   binit
+000103d0   main
+00010536   memcpy
+00010206   vw_Int_Handler
+0001010e   vw_pll
+00010000   vw_send
+00010420   vw_setup
+00010516   vw_symbol_6to4
+00010470   vw_tx_start
+000104a4   vw_tx_stop
+00010566   vw_wait_tx
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000000   IE1
+00000001   IE2
+00000001   __TI_args_main
+00000001   __TI_exit
+00000002   IFG1
+00000003   IFG2
+00000006   UC1IE
+00000007   UC1IFG
+00000010   P3REN
+00000011   P4REN
+00000012   P5REN
+00000013   P6REN
+00000014   P7REN
+00000014   PAREN
+00000015   P8REN
+00000018   P3IN
+00000019   P3OUT
+0000001a   P3DIR
+0000001b   P3SEL
+0000001c   P4IN
+0000001d   P4OUT
+0000001e   P4DIR
+0000001f   P4SEL
+00000020   P1IN
+00000021   P1OUT
+00000022   P1DIR
+00000023   P1IFG
+00000024   P1IES
+00000025   P1IE
+00000026   P1SEL
+00000027   P1REN
+00000028   P2IN
+00000029   P2OUT
+0000002a   P2DIR
+0000002b   P2IFG
+0000002c   P2IES
+0000002d   P2IE
+0000002e   P2SEL
+0000002f   P2REN
+00000030   P5IN
+00000031   P5OUT
+00000032   P5DIR
+00000033   P5SEL
+00000034   P6IN
+00000035   P6OUT
+00000036   P6DIR
+00000037   P6SEL
+00000038   P7IN
+00000038   PAIN
+00000039   P8IN
+0000003a   P7OUT
+0000003a   PAOUT
+0000003b   P8OUT
+0000003c   P7DIR
+0000003c   PADIR
+0000003d   P8DIR
+0000003e   P7SEL
+0000003e   PASEL
+0000003f   P8SEL
+00000050   __STACK_SIZE
+00000053   BCSCTL3
+00000055   SVSCTL
+00000056   DCOCTL
+00000057   BCSCTL1
+00000058   BCSCTL2
+00000059   CACTL1
+0000005a   CACTL2
+0000005b   CAPD
+0000005d   UCA0ABCTL
+0000005e   UCA0IRTCTL
+0000005f   UCA0IRRCTL
+00000060   UCA0CTL0
+00000061   UCA0CTL1
+00000062   UCA0BR0
+00000063   UCA0BR1
+00000064   UCA0MCTL
+00000065   UCA0STAT
+00000066   UCA0RXBUF
+00000067   UCA0TXBUF
+00000068   UCB0CTL0
+00000069   UCB0CTL1
+0000006a   UCB0BR0
+0000006b   UCB0BR1
+0000006c   UCB0I2CIE
+0000006d   UCB0STAT
+0000006e   UCB0RXBUF
+0000006f   UCB0TXBUF
+00000080   ADC12MCTL0
+00000081   ADC12MCTL1
+00000082   ADC12MCTL2
+00000083   ADC12MCTL3
+00000084   ADC12MCTL4
+00000085   ADC12MCTL5
+00000086   ADC12MCTL6
+00000087   ADC12MCTL7
+00000088   ADC12MCTL8
+00000089   ADC12MCTL9
+0000008a   ADC12MCTL10
+0000008b   ADC12MCTL11
+0000008c   ADC12MCTL12
+0000008d   ADC12MCTL13
+0000008e   ADC12MCTL14
+0000008f   ADC12MCTL15
+000000cd   UCA1ABCTL
+000000ce   UCA1IRTCTL
+000000cf   UCA1IRRCTL
+000000d0   UCA1CTL0
+000000d1   UCA1CTL1
+000000d2   UCA1BR0
+000000d3   UCA1BR1
+000000d4   UCA1MCTL
+000000d5   UCA1STAT
+000000d6   UCA1RXBUF
+000000d7   UCA1TXBUF
+000000d8   UCB1CTL0
+000000d9   UCB1CTL1
+000000da   UCB1BR0
+000000db   UCB1BR1
+000000dc   UCB1I2CIE
+000000dd   UCB1STAT
+000000de   UCB1RXBUF
+000000df   UCB1TXBUF
+00000118   UCB0I2COA
+0000011a   UCB0I2CSA
+0000011e   TBIV
+00000120   WDTCTL
+00000122   DMACTL0
+00000124   DMACTL1
+00000126   DMAIV
+00000128   FCTL1
+0000012a   FCTL2
+0000012c   FCTL3
+0000012e   TAIV
+00000130   MPY
+00000132   MPYS
+00000134   MAC
+00000136   MACS
+00000138   OP2
+0000013a   RESLO
+0000013c   RESHI
+0000013e   SUMEXT
+00000140   ADC12MEM0
+00000142   ADC12MEM1
+00000144   ADC12MEM2
+00000146   ADC12MEM3
+00000148   ADC12MEM4
+0000014a   ADC12MEM5
+0000014c   ADC12MEM6
+0000014e   ADC12MEM7
+00000150   ADC12MEM8
+00000152   ADC12MEM9
+00000154   ADC12MEM10
+00000156   ADC12MEM11
+00000158   ADC12MEM12
+0000015a   ADC12MEM13
+0000015c   ADC12MEM14
+0000015e   ADC12MEM15
+00000160   TACTL
+00000162   TACCTL0
+00000164   TACCTL1
+00000166   TACCTL2
+00000170   TAR
+00000172   TACCR0
+00000174   TACCR1
+00000176   TACCR2
+0000017c   UCB1I2COA
+0000017e   UCB1I2CSA
+00000180   TBCTL
+00000182   TBCCTL0
+00000184   TBCCTL1
+00000186   TBCCTL2
+00000188   TBCCTL3
+0000018a   TBCCTL4
+0000018c   TBCCTL5
+0000018e   TBCCTL6
+00000190   TBR
+00000192   TBCCR0
+00000194   TBCCR1
+00000196   TBCCR2
+00000198   TBCCR3
+0000019a   TBCCR4
+0000019c   TBCCR5
+0000019e   TBCCR6
+000001a0   ADC12CTL0
+000001a2   ADC12CTL1
+000001a4   ADC12IFG
+000001a6   ADC12IE
+000001a8   ADC12IV
+000001be   FCTL4
+000001c0   DAC12_0CTL
+000001c2   DAC12_1CTL
+000001c8   DAC12_0DAT
+000001ca   DAC12_1DAT
+000001d0   DMA0CTL
+000001d2   DMA0SA
+000001d2   DMA0SAL
+000001d6   DMA0DA
+000001d6   DMA0DAL
+000001da   DMA0SZ
+000001dc   DMA1CTL
+000001de   DMA1SA
+000001de   DMA1SAL
+000001e2   DMA1DA
+000001e2   DMA1DAL
+000001e6   DMA1SZ
+000001e8   DMA2CTL
+000001ea   DMA2SA
+000001ea   DMA2SAL
+000001ee   DMA2DA
+000001ee   DMA2DAL
+000001f2   DMA2SZ
+000010c0   TLV_CHECKSUM
+000010da   TLV_ADC12_1_TAG
+000010db   TLV_ADC12_1_LEN
+000010f6   TLV_DCO_30_TAG
+000010f7   TLV_DCO_30_LEN
+000010f8   CALDCO_16MHZ
+000010f9   CALBC1_16MHZ
+000010fa   CALDCO_12MHZ
+000010fb   CALBC1_12MHZ
+000010fc   CALDCO_8MHZ
+000010fd   CALBC1_8MHZ
+000010fe   CALDCO_1MHZ
+000010ff   CALBC1_1MHZ
+000030b0   _stack
+00003100   __STACK_END
+00003100   _c_int00
+00003100   _c_int00_noexit
+0000311a   TIMERA0_ISR
+00003152   __TI_Handler_Table_Base
+0000315e   __TI_Handler_Table_Limit
+00003164   __TI_CINIT_Base
+00003174   __TI_CINIT_Limit
+0000ffc0   __TI_int00
+0000ffc2   __TI_int01
+0000ffc4   __TI_int02
+0000ffc6   __TI_int03
+0000ffc8   __TI_int04
+0000ffca   __TI_int05
+0000ffcc   __TI_int06
+0000ffce   __TI_int07
+0000ffd0   __TI_int08
+0000ffd2   __TI_int09
+0000ffd4   __TI_int10
+0000ffd6   __TI_int11
+0000ffd8   __TI_int12
+0000ffda   __TI_int13
+0000ffdc   __TI_int14
+0000ffde   __TI_int15
+0000ffe0   __TI_int16
+0000ffe2   __TI_int17
+0000ffe4   __TI_int18
+0000ffe6   __TI_int19
+0000ffe8   __TI_int20
+0000ffea   __TI_int21
+0000ffec   __TI_int22
+0000ffee   __TI_int23
+0000fff0   __TI_int24
+0000fff2   __TI_int25
+0000fff4   __TI_int26
+0000fff6   __TI_int27
+0000fff8   __TI_int28
+0000fffa   __TI_int29
+0000fffc   __TI_int30
+0000fffe   _reset_vector
+00010000   vw_send
+0001010e   vw_pll
+00010206   vw_Int_Handler
+000102a8   _auto_init_hold_wdt
+00010378   __mspabi_divul
+00010378   __mspabi_remul
+000103d0   main
+00010420   vw_setup
+00010470   vw_tx_start
+000104a4   vw_tx_stop
+000104cc   _crc_ccitt_update
+000104f2   __TI_zero_init
+00010516   vw_symbol_6to4
+00010536   memcpy
+0001054a   __TI_decompress_none
+0001055c   __mspabi_srli
+00010566   vw_wait_tx
+0001056e   __TI_ISR_TRAP
+00010574   __TI_decompress_rle24
+0001057a   _system_pre_init
+0001057e   C$$EXIT
+0001057e   abort
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   binit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+
+[292 symbols]
