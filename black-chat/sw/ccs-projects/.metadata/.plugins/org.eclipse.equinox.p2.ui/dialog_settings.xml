@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.equinox.internal.p2.ui.dialogs.UpdateWizard.WizardSettings">
+		<item value="866" key="DIALOG_WIDTH"/>
+		<item value="132" key="DIALOG_Y_ORIGIN"/>
+		<item value="595" key="DIALOG_HEIGHT"/>
+		<item value="528" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Droid Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

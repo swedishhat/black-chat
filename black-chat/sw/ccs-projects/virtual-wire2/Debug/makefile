@@ -2,9 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-SHELL = cmd.exe
-
-CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/msp430_4.3.3
+CG_TOOL_ROOT := /home/jimbo/.opt/ti/ccsv6/tools/compiler/msp430_4.3.3
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
@@ -15,8 +13,8 @@ $(GEN_CMDS__FLAG) \
 
 -include ../makefile.init
 
-RM := DEL /F
-RMDIR := RMDIR /S/Q
+RM := rm -rf
+RMDIR := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -128,13 +126,13 @@ all: Virtual-Wire2.out
 Virtual-Wire2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MSP430 Linker'
-	"C:/ti/ccsv6/tools/compiler/msp430_4.3.3/bin/cl430" -vmspx --abi=eabi --data_model=restricted --advice:power=all -g --define=__MSP430F2617__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Virtual-Wire2.map" --heap_size=80 --stack_size=80 --use_hw_mpy=16 --cinit_hold_wdt=on -i"C:/ti/ccsv6/ccs_base/msp430/include" -i"C:/ti/ccsv6/tools/compiler/msp430_4.3.3/lib" -i"C:/ti/ccsv6/tools/compiler/msp430_4.3.3/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Virtual-Wire2_linkInfo.xml" --rom_model -o "Virtual-Wire2.out" $(ORDERED_OBJS)
+	"/home/jimbo/.opt/ti/ccsv6/tools/compiler/msp430_4.3.3/bin/cl430" -vmspx --abi=eabi --data_model=restricted --advice:power=all -g --define=__MSP430F2617__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Virtual-Wire2.map" --heap_size=80 --stack_size=80 --use_hw_mpy=16 --cinit_hold_wdt=on -i"/home/jimbo/.opt/ti/ccsv6/ccs_base/msp430/include" -i"/home/jimbo/.opt/ti/ccsv6/tools/compiler/msp430_4.3.3/lib" -i"/home/jimbo/.opt/ti/ccsv6/tools/compiler/msp430_4.3.3/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Virtual-Wire2_linkInfo.xml" --rom_model -o "Virtual-Wire2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 Virtual-Wire2.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: MSP430 Hex Utility'
-	"C:/ti/ccsv6/tools/compiler/msp430_4.3.3/bin/hex430" --memwidth=8 --romwidth=8 -o "Virtual-Wire2.hex" $(EXE_OUTPUTS__QUOTED)
+	"/home/jimbo/.opt/ti/ccsv6/tools/compiler/msp430_4.3.3/bin/hex430" --memwidth=8 --romwidth=8 -o "Virtual-Wire2.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 

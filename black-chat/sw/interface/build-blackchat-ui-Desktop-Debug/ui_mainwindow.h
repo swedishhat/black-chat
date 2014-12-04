@@ -43,19 +43,19 @@ public:
     QPushButton *btnDevRefresh;
     QPushButton *btnDevConnect;
     QHBoxLayout *horizontalLayout_4;
-    QLineEdit *lineEdit;
+    QLineEdit *txtKeyBox;
     QPushButton *btnKeyGen;
     QHBoxLayout *horizontalLayout_3;
     QTextBrowser *txtDebug;
     QVBoxLayout *verticalLayout_2;
-    QTextBrowser *txtMessage;
+    QTextBrowser *txtConversation;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *btnClear;
-    QPushButton *pushButton_4;
-    QPlainTextEdit *plainTextEdit;
+    QPushButton *btnSend;
+    QPlainTextEdit *txtMessage;
     QHBoxLayout *horizontalLayout_7;
     QLabel *label;
-    QLabel *label_2;
+    QLabel *lblCharCount;
     QMenuBar *menubar;
     QMenu *menuFile;
     QStatusBar *statusbar;
@@ -99,10 +99,11 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        txtKeyBox = new QLineEdit(centralwidget);
+        txtKeyBox->setObjectName(QStringLiteral("txtKeyBox"));
+        txtKeyBox->setReadOnly(true);
 
-        horizontalLayout_4->addWidget(lineEdit);
+        horizontalLayout_4->addWidget(txtKeyBox);
 
         btnKeyGen = new QPushButton(centralwidget);
         btnKeyGen->setObjectName(QStringLiteral("btnKeyGen"));
@@ -121,10 +122,10 @@ public:
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        txtMessage = new QTextBrowser(centralwidget);
-        txtMessage->setObjectName(QStringLiteral("txtMessage"));
+        txtConversation = new QTextBrowser(centralwidget);
+        txtConversation->setObjectName(QStringLiteral("txtConversation"));
 
-        verticalLayout_2->addWidget(txtMessage);
+        verticalLayout_2->addWidget(txtConversation);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -133,23 +134,23 @@ public:
 
         horizontalLayout_2->addWidget(btnClear);
 
-        pushButton_4 = new QPushButton(centralwidget);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        btnSend = new QPushButton(centralwidget);
+        btnSend->setObjectName(QStringLiteral("btnSend"));
 
-        horizontalLayout_2->addWidget(pushButton_4);
+        horizontalLayout_2->addWidget(btnSend);
 
 
         verticalLayout_2->addLayout(horizontalLayout_2);
 
-        plainTextEdit = new QPlainTextEdit(centralwidget);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        txtMessage = new QPlainTextEdit(centralwidget);
+        txtMessage->setObjectName(QStringLiteral("txtMessage"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(plainTextEdit->sizePolicy().hasHeightForWidth());
-        plainTextEdit->setSizePolicy(sizePolicy);
+        sizePolicy.setHeightForWidth(txtMessage->sizePolicy().hasHeightForWidth());
+        txtMessage->setSizePolicy(sizePolicy);
 
-        verticalLayout_2->addWidget(plainTextEdit);
+        verticalLayout_2->addWidget(txtMessage);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
@@ -161,10 +162,10 @@ public:
 
         verticalLayout_2->addWidget(label);
 
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        lblCharCount = new QLabel(centralwidget);
+        lblCharCount->setObjectName(QStringLiteral("lblCharCount"));
 
-        verticalLayout_2->addWidget(label_2);
+        verticalLayout_2->addWidget(lblCharCount);
 
 
         horizontalLayout_3->addLayout(verticalLayout_2);
@@ -175,7 +176,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 800, 25));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -205,18 +206,18 @@ public:
         txtDebug->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Droid Sans'; font-size:10pt;\">Debugging Output</span></p></body></html>", 0));
-        txtMessage->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"</style></head><body style=\" font-family:'Droid Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Debugging Output</p></body></html>", 0));
+        txtConversation->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Droid Sans'; font-size:10pt;\">Conversation</span></p></body></html>", 0));
+"</style></head><body style=\" font-family:'Droid Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Conversation</p></body></html>", 0));
         btnClear->setText(QApplication::translate("MainWindow", "Clear", 0));
-        pushButton_4->setText(QApplication::translate("MainWindow", "Send", 0));
-        plainTextEdit->setPlainText(QApplication::translate("MainWindow", "Message to Send", 0));
+        btnSend->setText(QApplication::translate("MainWindow", "Send", 0));
+        txtMessage->setPlainText(QApplication::translate("MainWindow", "Message to Send", 0));
         label->setText(QApplication::translate("MainWindow", "Character Count:", 0));
-        label_2->setText(QApplication::translate("MainWindow", "1234", 0));
+        lblCharCount->setText(QApplication::translate("MainWindow", "1234", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 

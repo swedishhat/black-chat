@@ -20,6 +20,10 @@ private slots:
 
     void on_btnClear_clicked();
 
+    void on_plainTextEdit_cursorPositionChanged();
+
+    void on_btnKeyGen_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

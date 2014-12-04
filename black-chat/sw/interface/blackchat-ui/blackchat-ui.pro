@@ -19,4 +19,8 @@ HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
-LIBS += -Wl,-static -lserial -Wl,-Bdynamic
+#LIBS += -Wl,-static -lserial -Wl,-Bdynamic
+
+unix|win32: LIBS += -static -lserial
+LIBS += -L/usr/lib
+LIBS += -L/usr/local/lib
