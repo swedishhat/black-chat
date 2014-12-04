@@ -31,6 +31,7 @@
 #include "VirtualWire.h"
 #include "util/crc16.h"
 #include <string.h>
+#define CLOCK_SPEED 16000000UL
 
 
 static uint8_t vw_tx_buf[(VW_MAX_MESSAGE_LEN * 2) + VW_HEADER_LEN] 
@@ -55,14 +56,14 @@ static volatile uint8_t vw_tx_enabled = 0;
 static uint16_t vw_tx_msg_count = 0;
 
 // The digital IO pin number of the press to talk, enables the transmitter hardware
-static uint8_t vw_ptt_pin = 10;
+static uint8_t vw_ptt_pin = 0;
 static uint8_t vw_ptt_inverted = 0;
 
 // The digital IO pin number of the receiver data
-static uint8_t vw_rx_pin = 11;
+static uint8_t vw_rx_pin = 0;
 
 // The digital IO pin number of the transmitter data
-static uint8_t vw_tx_pin = 12;
+static uint8_t vw_tx_pin = 0;
 
 // Current receiver sample
 static uint8_t vw_rx_sample = 0;
@@ -333,19 +334,19 @@ void vw_setup(uint16_t speed)
 {
 	// Calculate the counter overflow count based on the required bit speed
 	// and CPU clock rate
-	uint16_t ocr1a = (1000000UL / 8UL) / speed;
+	uint16_t ocr1a = (CLOCK_SPEED / 32UL) / speed;
 		
 	// This code is for Energia/MSP430
 	TA0CCR0 = ocr1a;				// Ticks for 62,5 us
-	TA0CTL = TASSEL_2 + MC_1;       // SMCLK, up mode
+	TA0CTL = TASSEL_1 + MC_1;       // ACLK, up mode
 	TA0CCTL0 |= CCIE;               // CCR0 interrupt enabled
-	__bis_SR_register(GIE);
+	//__bis_SR_register(GIE);
 		
 	// Set up digital IO pins
-	P1DIR |= BIT0;	//pinMode(vw_tx_pin, OUTPUT);
-	P1DIR &= ~BIT1;	//pinMode(vw_rx_pin, INPUT);
-	P1DIR |= BIT2;	//pinMode(vw_ptt_pin, OUTPUT);
-	P1OUT = (P1OUT | vw_ptt_inverted<<2)&(~BIT2 | vw_ptt_inverted<<2);	//digitalWrite(vw_ptt_pin, vw_ptt_inverted);
+	P3DIR |= BIT0;	//pinMode(vw_tx_pin, OUTPUT);
+	P3DIR &= ~BIT1;	//pinMode(vw_rx_pin, INPUT);
+	P3DIR |= BIT2;	//pinMode(vw_ptt_pin, OUTPUT);
+	P3OUT = (P3OUT | vw_ptt_inverted<<2)&(~BIT2 | vw_ptt_inverted<<2);	//digitalWrite(vw_ptt_pin, vw_ptt_inverted);
 }	
 
 #if defined (ARDUINO) // Arduino specific
@@ -427,7 +428,7 @@ void vw_tx_start()
     vw_tx_sample = 0;
 
     // Enable the transmitter hardware
-    P1OUT = (P1OUT | (1 ^ vw_ptt_inverted)<<2)&(~BIT2 | (1 ^ vw_ptt_inverted)<<2);	//digitalWrite(vw_ptt_pin, true ^ vw_ptt_inverted);
+    P3OUT = (P3OUT | (1 ^ vw_ptt_inverted)<<2)&(~BIT2 | (1 ^ vw_ptt_inverted)<<2);	//digitalWrite(vw_ptt_pin, true ^ vw_ptt_inverted);
 
     // Next tick interrupt will send the first bit
     vw_tx_enabled = true;
@@ -437,8 +438,8 @@ void vw_tx_start()
 void vw_tx_stop()
 {
     // Disable the transmitter hardware
-	P1OUT = (P1OUT | (0 ^ vw_ptt_inverted)<<2)&(~BIT2 | (0 ^ vw_ptt_inverted)<<2);	//digitalWrite(vw_ptt_pin, false ^ vw_ptt_inverted);
-    P1OUT &= ~BIT0;	//digitalWrite(vw_tx_pin, false);
+	P3OUT = (P3OUT | (0 ^ vw_ptt_inverted)<<2)&(~BIT2 | (0 ^ vw_ptt_inverted)<<2);	//digitalWrite(vw_ptt_pin, false ^ vw_ptt_inverted);
+    P3OUT &= ~BIT0;	//digitalWrite(vw_tx_pin, false);
 
     // No more ticks for the transmitter
     vw_tx_enabled = false;
@@ -487,7 +488,7 @@ void vw_wait_rx()
 
 // Wait at most max milliseconds for the receiver to receive a message
 // Return the truth of whether there is a message
-/*uint8_t vw_wait_rx_max(unsigned long milliseconds)	//MSP430 Port: Kill this temporarily
+/*uint8_t vw_wait_rx_max(unsigned long milliseconds)
 {
     unsigned long start = millis();
 
@@ -495,6 +496,16 @@ void vw_wait_rx()
 	;
     return vw_rx_done;
 }*/
+
+uint8_t vw_wait_rx_max(unsigned long milliseconds) {
+
+	uint32_t i;
+
+	for( i = milliseconds; !vw_rx_done && i != 0; --i )
+		__delay_cycles(0.001*CLOCK_SPEED);
+
+	return vw_rx_done;
+}
 
 // Wait until transmitter is available and encode and queue the message
 // into vw_tx_buf
@@ -630,7 +641,7 @@ SIGNAL(TIMER1_COMPA_vect)
 void vw_Int_Handler()
 {
     if (vw_rx_enabled && !vw_tx_enabled)
-	vw_rx_sample = (P1IN & BIT1)>>1;	//digitalRead(vw_rx_pin);
+	vw_rx_sample = (P3IN & BIT1)>>1;	//digitalRead(vw_rx_pin);
     
     // Do transmitter stuff first to reduce transmitter bit jitter due 
     // to variable receiver processing
@@ -649,7 +660,7 @@ void vw_Int_Handler()
 	}
 	else
 	{
-		P1OUT = (P1OUT | ((vw_tx_buf[vw_tx_index]>>vw_tx_bit)&BIT0))&(~BIT0 | ((vw_tx_buf[vw_tx_index]>>vw_tx_bit)&BIT0));
+		P3OUT = (P3OUT | ((vw_tx_buf[vw_tx_index]>>vw_tx_bit)&BIT0))&(~BIT0 | ((vw_tx_buf[vw_tx_index]>>vw_tx_bit)&BIT0));
 		//P1OUT = (P1OUT | (vw_tx_buf[vw_tx_index] & (1 << vw_tx_bit)))&(~BIT0 | (vw_tx_buf[vw_tx_index] & (1 << vw_tx_bit)));
 		//digitalWrite(vw_tx_pin, vw_tx_buf[vw_tx_index] & (1 << vw_tx_bit++));
 	    if (++vw_tx_bit >= 6)

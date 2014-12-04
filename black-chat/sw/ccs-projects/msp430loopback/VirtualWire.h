@@ -261,7 +261,7 @@
     /// Block until a message is available or for a max time
     /// \param[in] milliseconds Maximum time to wait in milliseconds.
     /// \return true if a message is available, false if the wait timed out.
-    //extern uint8_t vw_wait_rx_max(unsigned long milliseconds);	//MSP430 Port: Kill this temporarily
+    extern uint8_t vw_wait_rx_max(unsigned long milliseconds);
 
     /// Send a message with the given length. Returns almost immediately,
     /// and message will be sent at the right timing by interrupts

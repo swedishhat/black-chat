@@ -1,33 +1,84 @@
 #include <msp430f2617.h>
 #include "VirtualWire.h"
 #include <stdint.h>
-#define CLOCK_SPEED 1000000
-#define CYCLE_TIME (1/CLOCK_SPEED)
 
-char str[128];
+char outgoing[28];
+
+char incoming[28];
+
+uint8_t ack[1] = { 6 };
+
+uint8_t ready_to_tx = false;
 
 void clock_setup();
 
 void usci_uart_setup();
 
-void read_line();
+void read_line(char* str);
 
-void send_line();
+void send_line(char* str);
+
+uint8_t get_length(char* str);
+
+void null_terminate(char* str, uint8_t length);
 
 int main(void) {
 	WDTCTL = WDTPW | WDTHOLD;			// Stop watchdog timer
+
+	//P5DIR |= BIT1;
 
 	clock_setup();
 
 	usci_uart_setup();
 
-	P5DIR |= BIT1;
-	P5OUT &= ~BIT1;
+	vw_setup(1000);
+
+	vw_set_ptt_inverted(true);
+
+	__bis_SR_register(GIE);
+
+	vw_rx_start();
 
 	while(1) {
-		read_line();
-		send_line();
+		if( vw_have_message() ) {
+			vw_rx_stop();
+			__delay_cycles(100000);
+			vw_send(ack,1);
+			uint8_t length = 27;
+			vw_get_message(incoming, &length);
+			null_terminate(incoming, length);
+			send_line(incoming);
+			vw_rx_start();
+		} else if( ready_to_tx == true ) {
+			vw_rx_stop();
+			ready_to_tx = false;
+			uint16_t length = get_length(outgoing);
+			do {
+				vw_rx_stop();
+				vw_send(outgoing, length);
+				vw_wait_tx();
+				vw_rx_start();
+			} while( !vw_wait_rx_max(400) );
+			vw_get_message(incoming, &length);
+			vw_rx_start();
+		}
 	}
+}
+
+#pragma vector=USCIAB0RX_VECTOR
+__interrupt void USCI0RX_ISR(void) {
+	//__bis_SR_register(GIE);
+
+	char* pstr = outgoing;
+
+	do {
+		while( !(IFG2&UCA0RXIFG) );
+		*pstr = UCA0RXBUF;
+	} while( *pstr++ != '\n' );
+
+	*pstr = '\0';
+
+	ready_to_tx = true;
 }
 
 void clock_setup() {
@@ -51,9 +102,10 @@ void usci_uart_setup() {
 	UCA0BR0 = 26;
 	UCA0MCTL |= UCBRF_1 + UCOS16;
 	UCA0CTL1 &= ~UCSWRST;
+	IE2 |= UCA0RXIE;
 }
 
-void read_line() {
+void read_line(char* str) {
 	char* pstr = str;
 
 	while( !(IFG2&UCA0RXIFG) );
@@ -65,11 +117,26 @@ void read_line() {
 	*pstr = '\0';
 }
 
-void send_line() {
+void send_line(char* str) {
 	char* pstr = str;
 
 	while( *pstr != '\0' ) {
 		while( !(IFG2&UCA0TXIFG) );
 		UCA0TXBUF = *pstr++;
 	}
+}
+
+uint8_t get_length(char* str) {
+	char* pstr = str;
+	uint8_t length = 0;
+
+	while( *pstr++ != '\0' )
+		++length;
+
+	return length;
+}
+
+void null_terminate(char* str, uint8_t length) {
+	char* ptr = str + length;
+	*ptr = '\0';
 }
