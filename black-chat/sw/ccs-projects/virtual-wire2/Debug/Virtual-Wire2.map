@@ -1,7 +1,7 @@
 ******************************************************************************
-                  MSP430 Linker PC v4.3.3                      
+                  MSP430 Linker Unix v4.3.3                    
 ******************************************************************************
->> Linked Fri Nov 21 08:55:23 2014
+>> Linked Tue Dec  2 16:48:07 2014
 
 OUTPUT FILE NAME:   <Virtual-Wire2.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00003100
