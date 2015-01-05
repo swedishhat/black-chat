@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.3.3                      
 ******************************************************************************
->> Linked Thu Dec 04 06:06:54 2014
+>> Linked Thu Dec 11 13:57:07 2014
 
 OUTPUT FILE NAME:   <MSP430Loopback.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00003126
+ENTRY POINT SYMBOL: "_c_int00"  address: 000031c4
 
 
 MEMORY CONFIGURATION
@@ -18,8 +18,8 @@ MEMORY CONFIGURATION
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  RAM                   00001100   00002000  00000117  00001ee9  RWIX
-  FLASH                 00003100   0000cebe  0000008c  0000ce32  RWIX
+  RAM                   00001100   00002000  00000156  00001eaa  RWIX
+  FLASH                 00003100   0000cebe  0000016b  0000cd53  RWIX
   INT00                 0000ffc0   00000002  00000002  00000000  RWIX
   INT01                 0000ffc2   00000002  00000002  00000000  RWIX
   INT02                 0000ffc4   00000002  00000002  00000000  RWIX
@@ -52,7 +52,7 @@ MEMORY CONFIGURATION
   INT29                 0000fffa   00000002  00000002  00000000  RWIX
   INT30                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   0000a000  0000071c  000098e4  RWIX
+  FLASH2                00010000   0000a000  000007e6  0000981a  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -63,40 +63,46 @@ section   page    origin      length       input sections
 .init_array 
 *          0    00003100    00000000     UNINITIALIZED
 
-.data      0    00001100    00000071     UNINITIALIZED
-                  00001100    00000044     VirtualWire.obj (.data:vw_tx_buf)
-                  00001144    0000001b     VirtualWire.obj (.data)
-                  0000115f    00000001     main.obj (.data)
-                  00001160    00000010     VirtualWire.obj (.data:symbols)
-                  00001170    00000001     main.obj (.data:ack)
+.data      0    00001100    000000b0     UNINITIALIZED
+                  00001100    0000004c     VirtualWire.obj (.data:vw_tx_buf)
+                  0000114c    0000001b     VirtualWire.obj (.data)
+                  00001167    00000001     --HOLE--
+                  00001168    0000001b     main.obj (.data:welcome_buffer)
+                  00001183    00000001     --HOLE--
+                  00001184    00000010     VirtualWire.obj (.data:symbols)
+                  00001194    0000000c     main.obj (.data:received_buffer)
+                  000011a0    0000000b     main.obj (.data:message_buffer)
+                  000011ab    00000005     main.obj (.data)
 
 .TI.persistent 
 *          0    00001100    00000000     UNINITIALIZED
 
-.bss       0    00001172    00000056     UNINITIALIZED
-                  00001172    0000001e     (.common:vw_rx_buf)
-                  00001190    0000001c     (.common:incoming)
-                  000011ac    0000001c     (.common:outgoing)
+.bss       0    000011b0    00000056     UNINITIALIZED
+                  000011b0    0000001e     (.common:vw_rx_buf)
+                  000011ce    0000001c     (.common:incoming_buffer)
+                  000011ea    0000001c     (.common:outgoing_buffer)
 
 .TI.noinit 
-*          0    00001172    00000000     UNINITIALIZED
+*          0    000011b0    00000000     UNINITIALIZED
 
 .stack     0    000030b0    00000050     UNINITIALIZED
                   000030b0    00000004     rts430x_lc_rd_eabi.lib : boot.obj (.stack)
                   000030b4    0000004c     --HOLE--
 
 .text:_isr 
-*          0    00003100    0000004a     
-                  00003100    00000026     main.obj (.text:_isr:USCI0RX_ISR)
-                  00003126    0000001a     rts430x_lc_rd_eabi.lib : boot.obj (.text:_isr:_c_int00_noexit)
-                  00003140    0000000a     VirtualWire.obj (.text:_isr:TIMERA0_ISR)
+*          0    00003100    000000e8     
+                  00003100    000000c4     main.obj (.text:_isr:USCI0RX_ISR)
+                  000031c4    0000001a     rts430x_lc_rd_eabi.lib : boot.obj (.text:_isr:_c_int00_noexit)
+                  000031de    0000000a     VirtualWire.obj (.text:_isr:TIMERA0_ISR)
 
-.cinit     0    0000314a    00000042     
-                  0000314a    0000001f     (.cinit..data.load) [load image, compression = rle]
-                  00003169    00000001     --HOLE-- [fill = 0]
-                  0000316a    0000000c     (__TI_handler_table)
-                  00003176    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000317c    00000010     (__TI_cinit_table)
+.const     0    000031e8    0000000b     
+                  000031e8    0000000b     main.obj (.const)
+
+.cinit     0    000031f4    00000078     
+                  000031f4    00000056     (.cinit..data.load) [load image, compression = rle]
+                  0000324a    0000000c     (__TI_handler_table)
+                  00003256    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  0000325c    00000010     (__TI_cinit_table)
 
 RESERVED0 
 *          0    0000ffc0    00000002     
@@ -214,52 +220,51 @@ NMI        0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    0000071c     
-                  00010000    0000010e     VirtualWire.obj (.text:vw_send)
-                  0001010e    000000f8     VirtualWire.obj (.text:vw_pll)
-                  00010206    000000c8     main.obj (.text:main)
-                  000102ce    000000a2     VirtualWire.obj (.text:vw_Int_Handler)
-                  00010370    0000006e     rts430x_lc_rd_eabi.lib : autoinit.obj (.text:_auto_init_hold_wdt)
-                  000103de    00000062                            : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
-                  00010440    00000058                            : div32u.obj (.text)
-                  00010498    0000004c     VirtualWire.obj (.text:vw_setup)
-                  000104e4    00000046     VirtualWire.obj (.text:vw_get_message)
-                  0001052a    00000034     VirtualWire.obj (.text:vw_tx_start)
-                  0001055e    00000028     VirtualWire.obj (.text:vw_tx_stop)
-                  00010586    00000026     VirtualWire.obj (.text:_crc_ccitt_update)
-                  000105ac    00000026     main.obj (.text:clock_setup)
-                  000105d2    00000026     main.obj (.text:usci_uart_setup)
-                  000105f8    00000026     VirtualWire.obj (.text:vw_wait_rx_max)
-                  0001061e    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  00010642    00000020     VirtualWire.obj (.text:vw_symbol_6to4)
-                  00010662    0000001c     VirtualWire.obj (.text:vw_crc)
-                  0001067e    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
-                  00010692    00000014     main.obj (.text:send_line)
-                  000106a6    00000012     rts430x_lc_rd_eabi.lib : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  000106b8    00000010     main.obj (.text:get_length)
-                  000106c8    00000010     VirtualWire.obj (.text:vw_rx_start)
-                  000106d8    0000000c     main.obj (.text:null_terminate)
-                  000106e4    0000000a     rts430x_lc_rd_eabi.lib : lsr16.obj (.text)
-                  000106ee    00000008     VirtualWire.obj (.text:vw_wait_tx)
-                  000106f6    00000006     rts430x_lc_rd_eabi.lib : isr_trap.obj (.text:__TI_ISR_TRAP)
-                  000106fc    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
-                  00010702    00000006     VirtualWire.obj (.text:vw_have_message)
-                  00010708    00000006     VirtualWire.obj (.text:vw_rx_stop)
-                  0001070e    00000006     VirtualWire.obj (.text:vw_set_ptt_inverted)
-                  00010714    00000004     rts430x_lc_rd_eabi.lib : pre_init.obj (.text:_system_pre_init)
-                  00010718    00000004                            : exit.obj (.text:abort)
+.text      0    00010000    000007e6     
+                  00010000    00000110     VirtualWire.obj (.text:vw_send)
+                  00010110    0000010c     main.obj (.text:main)
+                  0001021c    000000f8     VirtualWire.obj (.text:vw_pll)
+                  00010314    000000a2     VirtualWire.obj (.text:vw_Int_Handler)
+                  000103b6    00000094     main.obj (.text:process_message)
+                  0001044a    0000006e     rts430x_lc_rd_eabi.lib : autoinit.obj (.text:_auto_init_hold_wdt)
+                  000104b8    00000062                            : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  0001051a    00000058                            : div32u.obj (.text)
+                  00010572    0000004c     VirtualWire.obj (.text:vw_setup)
+                  000105be    00000046     VirtualWire.obj (.text:vw_get_message)
+                  00010604    00000034     VirtualWire.obj (.text:vw_tx_start)
+                  00010638    00000028     VirtualWire.obj (.text:vw_tx_stop)
+                  00010660    00000026     VirtualWire.obj (.text:_crc_ccitt_update)
+                  00010686    00000026     main.obj (.text:clock_setup)
+                  000106ac    00000026     main.obj (.text:usci_uart_setup)
+                  000106d2    00000026     VirtualWire.obj (.text:vw_wait_rx_max)
+                  000106f8    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  0001071c    00000020     VirtualWire.obj (.text:vw_symbol_6to4)
+                  0001073c    0000001c     VirtualWire.obj (.text:vw_crc)
+                  00010758    0000001a     main.obj (.text:send_line)
+                  00010772    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
+                  00010786    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  00010798    00000010     VirtualWire.obj (.text:vw_rx_start)
+                  000107a8    0000000c     main.obj (.text:send_char)
+                  000107b4    0000000a     rts430x_lc_rd_eabi.lib : lsr16.obj (.text)
+                  000107be    00000008     VirtualWire.obj (.text:vw_wait_tx)
+                  000107c6    00000006     rts430x_lc_rd_eabi.lib : isr_trap.obj (.text:__TI_ISR_TRAP)
+                  000107cc    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  000107d2    00000006     VirtualWire.obj (.text:vw_rx_stop)
+                  000107d8    00000006     VirtualWire.obj (.text:vw_set_ptt_inverted)
+                  000107de    00000004     rts430x_lc_rd_eabi.lib : pre_init.obj (.text:_system_pre_init)
+                  000107e2    00000004                            : exit.obj (.text:abort)
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000317c records: 2, size/record: 8, table size: 16
-	.data: load addr=0000314a, load size=0000001f bytes, run addr=00001100, run size=00000071 bytes, compression=rle
-	.bss: load addr=00003176, load size=00000006 bytes, run addr=00001172, run size=00000056 bytes, compression=zero_init
+__TI_cinit_table @ 0000325c records: 2, size/record: 8, table size: 16
+	.data: load addr=000031f4, load size=00000056 bytes, run addr=00001100, run size=000000b0 bytes, compression=rle
+	.bss: load addr=00003256, load size=00000006 bytes, run addr=000011b0, run size=00000056 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000316a records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 0000324a records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_rle24
 	index: 2, handler: __TI_decompress_none
@@ -309,7 +314,7 @@ address    name
 00000057   BCSCTL1
 00000058   BCSCTL2
 00000053   BCSCTL3
-00010718   C$$EXIT
+000107e2   C$$EXIT
 00000059   CACTL1
 0000005a   CACTL2
 000010fb   CALBC1_12MHZ
@@ -441,7 +446,7 @@ address    name
 00000180   TBCTL
 0000011e   TBIV
 00000190   TBR
-00003140   TIMERA0_ISR
+000031de   TIMERA0_ISR
 000010db   TLV_ADC12_1_LEN
 000010da   TLV_ADC12_1_TAG
 000010c0   TLV_CHECKSUM
@@ -495,16 +500,16 @@ address    name
 00000120   WDTCTL
 00003100   __STACK_END
 00000050   __STACK_SIZE
-0000317c   __TI_CINIT_Base
-0000318c   __TI_CINIT_Limit
-0000316a   __TI_Handler_Table_Base
-00003176   __TI_Handler_Table_Limit
+0000325c   __TI_CINIT_Base
+0000326c   __TI_CINIT_Limit
+0000324a   __TI_Handler_Table_Base
+00003256   __TI_Handler_Table_Limit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
-000106f6   __TI_ISR_TRAP
+000107c6   __TI_ISR_TRAP
 00000001   __TI_args_main
-000106a6   __TI_decompress_none
-000106fc   __TI_decompress_rle24
+00010786   __TI_decompress_none
+000107cc   __TI_decompress_rle24
 00000001   __TI_exit
 0000ffc0   __TI_int00
 0000ffc2   __TI_int01
@@ -537,47 +542,63 @@ UNDEFED    __TI_INITARRAY_Limit
 0000fff8   __TI_int28
 0000fffa   __TI_int29
 0000fffc   __TI_int30
-0001061e   __TI_zero_init
+000106f8   __TI_zero_init
 ffffffff   __binit__
 ffffffff   __c_args__
-00010440   __mspabi_divul
-00010440   __mspabi_remul
-000106e4   __mspabi_srli
-00010370   _auto_init_hold_wdt
-00003126   _c_int00
-00003126   _c_int00_noexit
-00010586   _crc_ccitt_update
+0001051a   __mspabi_divul
+0001051a   __mspabi_remul
+000107b4   __mspabi_srli
+0001044a   _auto_init_hold_wdt
+000031c4   _c_int00
+000031c4   _c_int00_noexit
+00010660   _crc_ccitt_update
 0000fffe   _reset_vector
 000030b0   _stack
-00010714   _system_pre_init
-00010718   abort
-00001170   ack
+000107de   _system_pre_init
+000107e2   abort
+000031e9   ack
+000031ea   bel
 ffffffff   binit
-000105ac   clock_setup
-000106b8   get_length
-00001190   incoming
-00010206   main
-0001067e   memcpy
-000106d8   null_terminate
-000011ac   outgoing
-0000115f   ready_to_tx
-00010692   send_line
-000105d2   usci_uart_setup
-000102ce   vw_Int_Handler
-00010662   vw_crc
-000104e4   vw_get_message
-00010702   vw_have_message
-0001010e   vw_pll
-000106c8   vw_rx_start
-00010708   vw_rx_stop
+000031eb   bs
+000011ad   char_buffer
+000031f2   char_length
+00010686   clock_setup
+000031ee   cr
+000031f1   del
+000031f0   esc
+000031ec   ht
+000011ce   incoming_buffer
+000011ac   incoming_length
+000031ed   lf
+00010110   main
+00010772   memcpy
+000011a0   message_buffer
+000031ef   nak
+000031e8   nul
+000011ea   outgoing_buffer
+000011ab   outgoing_length
+000103b6   process_message
+000011ae   ready_to_tx
+00001194   received_buffer
+000107a8   send_char
+00010758   send_line
+000011af   started
+000106ac   usci_uart_setup
+00010314   vw_Int_Handler
+0001073c   vw_crc
+000105be   vw_get_message
+0001021c   vw_pll
+00010798   vw_rx_start
+000107d2   vw_rx_stop
 00010000   vw_send
-0001070e   vw_set_ptt_inverted
-00010498   vw_setup
-00010642   vw_symbol_6to4
-0001052a   vw_tx_start
-0001055e   vw_tx_stop
-000105f8   vw_wait_rx_max
-000106ee   vw_wait_tx
+000107d8   vw_set_ptt_inverted
+00010572   vw_setup
+0001071c   vw_symbol_6to4
+00010604   vw_tx_start
+00010638   vw_tx_stop
+000106d2   vw_wait_rx_max
+000107be   vw_wait_tx
+00001168   welcome_buffer
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -808,20 +829,37 @@ address    name
 000010fd   CALBC1_8MHZ
 000010fe   CALDCO_1MHZ
 000010ff   CALBC1_1MHZ
-0000115f   ready_to_tx
-00001170   ack
-00001190   incoming
-000011ac   outgoing
+00001168   welcome_buffer
+00001194   received_buffer
+000011a0   message_buffer
+000011ab   outgoing_length
+000011ac   incoming_length
+000011ad   char_buffer
+000011ae   ready_to_tx
+000011af   started
+000011ce   incoming_buffer
+000011ea   outgoing_buffer
 000030b0   _stack
 00003100   USCI0RX_ISR
 00003100   __STACK_END
-00003126   _c_int00
-00003126   _c_int00_noexit
-00003140   TIMERA0_ISR
-0000316a   __TI_Handler_Table_Base
-00003176   __TI_Handler_Table_Limit
-0000317c   __TI_CINIT_Base
-0000318c   __TI_CINIT_Limit
+000031c4   _c_int00
+000031c4   _c_int00_noexit
+000031de   TIMERA0_ISR
+000031e8   nul
+000031e9   ack
+000031ea   bel
+000031eb   bs
+000031ec   ht
+000031ed   lf
+000031ee   cr
+000031ef   nak
+000031f0   esc
+000031f1   del
+000031f2   char_length
+0000324a   __TI_Handler_Table_Base
+00003256   __TI_Handler_Table_Limit
+0000325c   __TI_CINIT_Base
+0000326c   __TI_CINIT_Limit
 0000ffc0   __TI_int00
 0000ffc2   __TI_int01
 0000ffc4   __TI_int02
@@ -855,43 +893,42 @@ address    name
 0000fffc   __TI_int30
 0000fffe   _reset_vector
 00010000   vw_send
-0001010e   vw_pll
-00010206   main
-000102ce   vw_Int_Handler
-00010370   _auto_init_hold_wdt
-00010440   __mspabi_divul
-00010440   __mspabi_remul
-00010498   vw_setup
-000104e4   vw_get_message
-0001052a   vw_tx_start
-0001055e   vw_tx_stop
-00010586   _crc_ccitt_update
-000105ac   clock_setup
-000105d2   usci_uart_setup
-000105f8   vw_wait_rx_max
-0001061e   __TI_zero_init
-00010642   vw_symbol_6to4
-00010662   vw_crc
-0001067e   memcpy
-00010692   send_line
-000106a6   __TI_decompress_none
-000106b8   get_length
-000106c8   vw_rx_start
-000106d8   null_terminate
-000106e4   __mspabi_srli
-000106ee   vw_wait_tx
-000106f6   __TI_ISR_TRAP
-000106fc   __TI_decompress_rle24
-00010702   vw_have_message
-00010708   vw_rx_stop
-0001070e   vw_set_ptt_inverted
-00010714   _system_pre_init
-00010718   C$$EXIT
-00010718   abort
+00010110   main
+0001021c   vw_pll
+00010314   vw_Int_Handler
+000103b6   process_message
+0001044a   _auto_init_hold_wdt
+0001051a   __mspabi_divul
+0001051a   __mspabi_remul
+00010572   vw_setup
+000105be   vw_get_message
+00010604   vw_tx_start
+00010638   vw_tx_stop
+00010660   _crc_ccitt_update
+00010686   clock_setup
+000106ac   usci_uart_setup
+000106d2   vw_wait_rx_max
+000106f8   __TI_zero_init
+0001071c   vw_symbol_6to4
+0001073c   vw_crc
+00010758   send_line
+00010772   memcpy
+00010786   __TI_decompress_none
+00010798   vw_rx_start
+000107a8   send_char
+000107b4   __mspabi_srli
+000107be   vw_wait_tx
+000107c6   __TI_ISR_TRAP
+000107cc   __TI_decompress_rle24
+000107d2   vw_rx_stop
+000107d8   vw_set_ptt_inverted
+000107de   _system_pre_init
+000107e2   C$$EXIT
+000107e2   abort
 ffffffff   __binit__
 ffffffff   __c_args__
 ffffffff   binit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
 
-[309 symbols]
+[325 symbols]

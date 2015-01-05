@@ -52,9 +52,9 @@ const uint8_t del = DEL;
 
 uint8_t outgoing_buffer[27];
 
-uint8_t outgoing_length = 1;
+uint8_t outgoing_length = 0;
 
-uint8_t incoming_buffer[28];
+uint8_t incoming_buffer[27];
 
 uint8_t incoming_length = 27;
 
@@ -62,11 +62,11 @@ uint8_t char_buffer = NUL;
 
 const uint8_t char_length = 1;
 
-uint8_t welcome_buffer[] = {" \r\nWelcome to BlackChat.\r\n"};
+uint8_t welcome_buffer[] = {"\r\nWelcome to BlackChat.\r\n"};
 
-uint8_t message_buffer[] = {" Message: "};
+uint8_t message_buffer[] = {"Message:"};
 
-uint8_t received_buffer[] = {" Received: "};
+uint8_t received_buffer[] = {"Received:"};
 
 uint8_t ready_to_tx = false;
 
@@ -91,6 +91,8 @@ void process_message();
 int main(void) {
 	WDTCTL = WDTPW | WDTHOLD;			// Stop watchdog timer
 
+	uint8_t i = 0;
+
 	P5DIR |= BIT0 + BIT1;
 	P5OUT |= BIT0 + BIT1;
 
@@ -98,30 +100,25 @@ int main(void) {
 
 	usci_uart_setup();
 
-	vw_set_ptt_inverted(true);
-
 	vw_setup(1000);
+
+	vw_set_ptt_inverted(true);
 
 	__bis_SR_register(GIE);
 
-	outgoing_buffer[0] = 0; // outgoing message number
-
-	incoming_buffer[27] = 255;
-
 	while( !started );
 
-	send_line(welcome_buffer, 28);
+	send_line(welcome_buffer, 27);
 
-	send_line(message_buffer, 10);
+	send_line(message_buffer, 8);
 
 	vw_rx_start();
 
 	while(1) {
 		if( vw_get_message(incoming_buffer, &incoming_length) ) {
-			if( incoming_length != 1 )
-				process_message();
+			process_message();
 		} else if( ready_to_tx == true ) {
-			//vw_rx_stop();
+			vw_rx_stop();
 			P5OUT &= ~BIT0;
 			uint8_t good;
 			do {
@@ -137,9 +134,8 @@ int main(void) {
 			if( incoming_length == 1 ) {
 				if( incoming_buffer[0] == ACK ) {
 					ready_to_tx = false;
-					outgoing_length = 1;
-					send_line(message_buffer, 10);
-					outgoing_buffer[0] += 1;
+					outgoing_length = 0;
+					send_line(message_buffer, 8);
 					P5OUT ^= BIT0;
 					vw_rx_start();
 				} else
@@ -163,14 +159,14 @@ __interrupt void USCI0RX_ISR(void) {
 		started = true;
 	else if( started == true && ready_to_tx == false ) {
 		if( char_buffer == CR || char_buffer == LF ) {
-			if( outgoing_length != 1 ) {
+			if( outgoing_length != 0 ) {
 				ready_to_tx = true;
 				send_char(CR);
 				send_char(LF);
 			} else
 				send_char(BEL);
 		} else if( char_buffer == BS ) {
-			if( outgoing_length == 1 ) {
+			if( outgoing_length == 0 ) {
 				send_char(BEL);
 			} else {
 				--outgoing_length;
@@ -240,7 +236,7 @@ void usci_uart_setup() {
 
 void send_line(uint8_t* str, uint8_t length) {
 	uint8_t i;
-	for( i = 1; i != length; ++i ) {
+	for( i = 0; i != length; ++i ) {
 		while( !(IFG2&UCA0TXIFG) );
 		UCA0TXBUF = str[i];
 	}
@@ -251,24 +247,38 @@ void send_char(uint8_t character) {
 	UCA0TXBUF = character;
 }
 
+/*uint8_t get_length(uint8_t* str) {
+	uint8_t* pstr = str;
+	uint8_t length = 0;
+
+	while( *pstr++ != '\0' )
+		++length;
+
+	return length;
+}*/
+
+/*void null_terminate(uint8_t* str, uint8_t length) {
+	uint8_t* ptr = str + length;
+	*ptr = '\0';
+}*/
+
 void process_message() {
 	uint8_t i;
 	vw_rx_stop();
 	P5OUT &= ~BIT1;
+	//__delay_cycles(100000);
 	vw_send(&ack,1);
-	if( incoming_buffer[0] != incoming_buffer[27] ) {
-		send_char(CR);
-		for( i = 50; i != 0; --i)
-			send_char(' ');
-		send_char(CR);
-		send_line(received_buffer, 11);
-		send_line(incoming_buffer, incoming_length);
-		send_char(CR);
-		send_char(LF);
-		send_line(message_buffer, 10);
-		send_line(outgoing_buffer, outgoing_length);
-		incoming_buffer[27] = incoming_buffer[0];
-	}
+	//vw_get_message(incoming_buffer, &incoming_length);
+	send_char(CR);
+	for( i = 50; i != 0; --i)
+		send_char(' ');
+	send_char(CR);
+	send_line(received_buffer, 9);
+	send_line(incoming_buffer, incoming_length);
+	send_char(CR);
+	send_char(LF);
+	send_line(message_buffer, 8);
+	send_line(outgoing_buffer, outgoing_length);
 	incoming_length = 27;
 	P5OUT ^= BIT1;
 	vw_rx_start();
